@@ -1,20 +1,13 @@
 body{
-    margin: 0;
-    font-weight: 300;
     background-image:url(/img/90462.jpg);
+    margin: 0;
     background-position: center center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: fixed; 
     background-size: cover;
+    padding-bottom: 500px;
 }
-
-.container h2{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 50px;
-    display: inline;
-    color: white;
-}
-
+                                                          /*HEADER GENERAL*/
 header{
     background-color: rgb(55, 59, 59);
     background: linear-gradient(45deg,rgb(55,59,59),rgb(5, 5, 5));
@@ -28,11 +21,29 @@ header::after{
 
 nav{
     float: right;
+} 
+
+.containerer{
+    width: 80%;
+    margin:0 auto;
+    background: transparent;
 }
 
-.container{
-    width: 80%;
-    margin: 0 auto;
+.containerer h2{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 50px;
+    display: inline;
+    color: white;
+    position: fixed;
+    left: 100px;
+
+}
+
+.negro{
+    color: rgb(26, 26, 26);
+}
+.blanco2{
+    color: whitesmoke;
 }
 
 nav ul{
@@ -60,7 +71,7 @@ nav a{
 /*al pasar el puntero arriba del link cambiara de color*/
 nav a:hover{
     color:white;
-
+    text-decoration: none;
 }
 
 nav a::before{
@@ -81,33 +92,107 @@ nav a:hover::before{
     width: 100%;
 }
 
-
-/* .jumbotron-fluid {
-    text-shadow: #444 0 1px 1px;
-    color: #FFF;
-    position: relative;
-    height: 40vh;
-}
-
-.jumbotron-fluid .container-fluid {
-    position: relative;
-    z-index: 2;
-} */
-
+                                                    /*  Parte central*/
 .centrar{
     text-align: center;
-    padding-right: 30%;
-    padding-left: 30%;
+    padding-right: 10%;
+    padding-left: 10%;
+}
+
+
+                        /*boton empezar del home*/
+.btn2{
+    background-color: #303030;
+    color: white;
+    font-size: 20px;
 }
 
 .centrar-btn{
     display: flex;
-    align-items: center;
+    text-align: center;
     justify-content: center;
-    height: 40px;
-    margin: 0 5%;
+ }
+
+
+                                                /*Contenido del jumbotron*/
+.jumbotron{
+    background: transparent;
+
 }
 
+/* centro el contenido del jumbotron*/
 .jumbotron-centrar{
-    margin: 0 30%;
+    margin: 0 40%;
+    align-content: center;
+    justify-content: center;
+}
+
+.jumbotron a:hover{
+    color:white;
+    text-decoration: none;
+}
+
+
+                                                        /*sidebar del index*/
+.bgt{
+    background: transparent;
+}
+
+.bgimg{
+    background: url(/img/90462.jpg);
+    background-size: cover ;
+}
+
+                                                            /*pagina about*/
+.containerabout{
+    text-align: center;
+}
+
+.containerabout h1{
+    font-size: 60px;
+}
+
+
+@media screen and (max-width:800px){
+    header nav{
+        width:60%;
+        height: 50%;
+        margin: 0;
+        position: fixed;
+        background: #303030;
+        background: linear-gradient(45deg,rgb(55,59,59),rgb(5, 5, 5));
+    }
+    header nav ul li {
+        display: block;
+        float: none;
+        border-bottom:1px solid rgba(225,225,255,.3);
+    }
+    header nav a:hover{
+        color:white;
+        text-decoration: none;
+    }
+    
+    header nav a::before{
+        content: '';
+        display: inline-block;
+        height: 100%;
+        width: 5px;
+        background-color:rgb(170, 170, 170);
+        text-decoration: none;
+
+        right: 0;
+        width: 0;
+        
+        transition: all ease-in-out 100ms;
+    }
+    header nav a:hover::before{
+        width: 50px;
+        text-decoration-color: black;
+        text-align: center;
+    }
+    .menu_bar{
+        display:block;
+        width: 100%;
+        background: #ccc;
+    }
 }
