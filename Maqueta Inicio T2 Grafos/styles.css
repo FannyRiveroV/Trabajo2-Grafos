@@ -1,3 +1,11 @@
+:root {
+    --primary: rgb(175, 173, 173);
+    --light: #ffffff;
+    --light-blue: #F5F6FA;
+    --grey: #eff2f7;
+    --dark: rgb(0, 0, 0);
+}
+
 body{
     background-image:url(/img/90462.jpg);
     margin: 0;
@@ -6,7 +14,15 @@ body{
     background-attachment: fixed; 
     background-size: cover;
     padding-bottom: 500px;
+    overflow: hidden;
+    font-family: 'Muli', sans-serif;
 }
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+  }
                                                           /*HEADER GENERAL*/
 header{
     background-color: rgb(55, 59, 59);
@@ -19,25 +35,31 @@ header::after{
     clear: both;
 }
 
-nav{
-    float: right;
-} 
-
-.containerer{
-    width: 80%;
-    margin:0 auto;
-    background: transparent;
-}
-
-.containerer h2{
+.auto-nav-header{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 50px;
     display: inline;
     color: white;
     position: fixed;
     left: 100px;
-
+    top: -5px;
 }
+/*Automatas de la barra de navegacion*/
+.auto-nav-header:hover{
+    text-decoration: none;
+    color: white;
+}
+
+nav{
+    float: right;
+} 
+
+.containerer{
+    width: 70%;
+    margin:0 auto;
+    background: transparent;
+}
+
 
 .negro{
     color: rgb(26, 26, 26);
@@ -55,7 +77,7 @@ nav ul{
 nav li{
     display: inline-block;
     margin-left: 75px;
-    padding-top: 25px;
+    padding-top: 30px;
 
     position: relative;
 }
@@ -134,6 +156,32 @@ nav a:hover::before{
 
 
                                                         /*sidebar del index*/
+.text-muted {
+    color: var(--dark) !important;
+    opacity: .7; 
+}
+
+.bg-light {
+  background-color: var(--light) !important;
+}
+
+.bg-light-blue {
+  background-color: var(--light-blue) !important;
+}
+
+.shadow-sm {
+  box-shadow: 0 0 1.25rem rgba(11,37,75,.05);
+}
+
+.shadow-hover {
+  transition: 1s ease-in-out;
+}
+
+.shadow-hover:hover {
+  transition: 1s ease-in-out;
+  box-shadow: 0 .5rem 1rem rgba(11,37,75,.10)!important;
+}
+
 .bgt{
     background: transparent;
 }
@@ -142,8 +190,98 @@ nav a:hover::before{
     background: url(/img/90462.jpg);
     background-size: cover ;
 }
+#sidebar-container {
+    min-height: 100vh;
+    margin-left: -18rem;
+    -webkit-box-shadow: 5px 0px 5px 0px rgba(0,0,0,0.1);
+    -moz-box-shadow: 5px 0px 5px 0px rgba(0,0,0,0.1);
+    box-shadow: 5px 0px 5px 0px rgba(0,0,0,0.1);
+    -webkit-transition: margin .25s ease-out;
+    -moz-transition: margin .25s ease-out;
+    -o-transition: margin .25s ease-out;
+    transition: margin .25s ease-out;
+}
 
-                                                            /*pagina about*/
+#sidebar-container .logo{
+  padding: 0.875rem 1.25rem;
+}
+
+/*sidebar de index*/
+#sidebar-container .menu {
+  width: 30rem;
+  text-align: center;
+  font-size: 20px;
+  padding-top:0%;
+}
+
+#content-wrapper.toggled #sidebar-container {
+  margin-left: 0;
+}
+
+.circle {
+  width: 50px;
+  height: 50px;
+}
+
+.badge {
+  padding: .5rem 1rem;
+}
+
+.bg-primary, .badge-primary {
+  background-color: rgba(0, 123, 255, .1) !important;
+}
+
+.avatar {
+  max-width: 35px;
+}
+
+.btn-primary {
+  background-color: rgba(0, 123, 255, .1) !important;
+  border: 0;
+}
+
+.btn-primary:hover {
+  background-color: rgba(0, 123, 255, .2) !important;
+}
+
+.badge-secondary {
+  background-color: var(--grey);
+  color: var(--primary);
+}
+
+#content {
+  overflow-y: auto;
+  height: 100vh;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0 1rem;
+}
+
+table thead th {
+  border: 0 !important;
+}
+
+table tbody tr {
+  background-color: var(--light);
+}
+
+table tbody td {
+  border-top: 0 !important;
+  line-height: 1.2;
+}
+
+
+@media (min-width: 768px) {
+  #sidebar-container {
+    margin-left: 0;
+  }
+  #content-wrapper.toggled #sidebar-container {
+    margin-left: -18rem;
+  }
+}
+
+                                                          /*pagina about*/
 .containerabout{
     text-align: center;
 }
@@ -151,17 +289,22 @@ nav a:hover::before{
 .containerabout h1{
     font-size: 60px;
 }
+.menu_bar{
+    display: none;
+}
 
 
-@media screen and (max-width:800px){
+@media screen and (max-width:1050px){
     header nav{
         width:60%;
         height: 50%;
+        left:-100%; 
         margin: 0;
         position: fixed;
-        background: #303030;
-        background: linear-gradient(45deg,rgb(55,59,59),rgb(5, 5, 5));
+         background: #303030;
+        background: linear-gradient(45deg,rgb(55,59,59),rgb(5, 5, 5)); 
     }
+
     header nav ul li {
         display: block;
         float: none;
@@ -190,9 +333,68 @@ nav a:hover::before{
         text-decoration-color: black;
         text-align: center;
     }
+    
+    
+    
     .menu_bar{
         display:block;
         width: 100%;
-        background: #ccc;
+        padding-top: 40px;
+    }
+
+    .menu_bar .bt-menu{
+        display: block;
+        padding: 20px;
+        padding-left: 0;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 25px;
+        color:rgb(170, 170, 170);
+        
+    }
+
+
+    .menu_bar span{
+        position: fixed;
+        left:25px;
+        font-size: 40px;
     }
 }
+
+
+/*Icono utilizado en el menu*/
+
+@font-face {
+    font-family: 'icomoon';
+    src:  url('fonts/icomoon.eot?cm7pqz');
+    src:  url('fonts/icomoon.eot?cm7pqz#iefix') format('embedded-opentype'),
+      url('fonts/icomoon.ttf?cm7pqz') format('truetype'),
+      url('fonts/icomoon.woff?cm7pqz') format('woff'),
+      url('fonts/icomoon.svg?cm7pqz#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+  }
+  
+  [class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+  
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .icon-list:before {
+    content: "\e9ba";
+  }
+  .icon-menu:before {
+    content: "\e9bd";
+  }
+  
