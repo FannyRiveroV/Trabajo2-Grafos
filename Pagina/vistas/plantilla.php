@@ -35,27 +35,28 @@
       </div>
       <div class="menu list-group-flush">
         <a href="index.php?pagina=inicio" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0">
-          <i class="material-icons"> account_circle </i> Nosotros </a>
+          <em class="material-icons"> account_circle </em> Nosotros </a>
         <a href="index.php?pagina=automatas" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0">
-          <i class="material-icons">add_circle</i>  Ingresar Automatas </a>
+          <em class="material-icons">add_circle</em>  Ingresar Automatas </a>
         <a href="#" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0">
-          <i class="material-icons">adjust</i>  AFD Equivalente </a>
+          <em class="material-icons">adjust</em>  AFD Equivalente </a>
         <a href="#" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0">
-          <i class="material-icons">blur_circular</i>  Union Automatas </a>
+          <em class="material-icons">blur_circular</em>  Union Automatas </a>
         <a href="#" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0">
-          <i class="material-icons">border_style</i> Simplificación </a>
+          <em class="material-icons">border_style</em> Simplificación </a>
 
 
       </div>
     </div>
 
 
-		<?php 
-			if(isset($_GET['pagina'])){
-				if( $_GET['pagina'] == "inicio" ||
-          $_GET['pagina'] == "automatas" ||	$_GET['pagina'] =="estados"
-          ||	$_GET['pagina'] =="muestraestados"){
-					include "vistas/".$_GET['pagina'].".php";
+    <?php
+    $pagina='pagina' 
+			if(isset($_GET[$pagina])){
+				if( $_GET[$pagina] == "inicio" ||
+          $_GET[$pagina] == "automatas" ||	$_GET[$pagina] =="estados"
+          ||	$_GET[$pagina] =="muestraestados"){
+					include "vistas/".$_GET[$pagina].".php";
 				}else{
 					include "vistas/inicio.php";
 				}

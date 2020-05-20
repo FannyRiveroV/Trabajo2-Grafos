@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <title>Grafos T2 </title>
+</head>
+<body>
     <!-- Page Content -->
     <div class="container">
       <div class="row">
@@ -26,8 +30,9 @@
                    for($a=0;$a<$cant_array;$a++){
                        array_push($K1,$_POST['estado'.$a]);
                        if($estado_inicial=$a)
+                       {
                            $estado_inicial=$K1[$a];
-    
+                       }
                    }
                    
    
@@ -35,8 +40,9 @@
                    for($a=0;$a<$cant_array2;$a++){
                        array_push($K2,$_POST['estado_'.$a]);
                        if($estado_inicial2=$a)
+                       {
                            $estado_inicial2=$K2[$a];
-       
+                       }
                    }
                    
    
@@ -45,14 +51,17 @@
                    {
                      if(isset($_POST['final_'.$a])){
                        if($_POST['final_'.$a]==$a)
+                       {
                        array_push($F1,$K1[$a]);
-                     }
+                       }
+                    }
                    }
                    for($a=0;$a<$cant_array2;$a++)
                    {
-                     if(isset($_POST['final2_'.$a])){
-                       if($_POST['final2_'.$a]==$a)
+                     if(isset($_POST['final2_'.$a]) && $_POST['final2_'.$a]==$a)
+                        {
                          array_push($F2,$K2[$a]);
+                        }
                      }  
                    }
    

@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <title>Grafos T2 </title>
+</head>
 
 <body>
     <!-- Page Content -->
