@@ -29,20 +29,14 @@
             }
             array_push($subconjuntos,$fila);
         }
-        vertabla($subconjuntos);
         
         $tabla=creartabla($final,$subconjuntos);
         $tabla2=creartabla($nofinal,$subconjuntos);
         $lamatrih=array($tabla,$tabla2);
-        foreach($lamatrih as $ma){
-            vertabla($ma);
-        }
         while(comprobartermino($lamatrih)){
-            $lamatrih=recursiva($lamatrih);
+            $lamatrih=recursiva($lamatrih,$automata);
         }
-        foreach($lamatrih as $ma){
-            vertabla($ma);
-        }
+        detablaadatos($lamatrih,$alf,$automata);
     }
 
     function buscarsig($estado,$letra,$directorio){
@@ -66,12 +60,11 @@
 
     function creartabla($leng,$subconjuntos){
         $c1=0;
-        $tabla= array();
         foreach($leng as $f){
             for($j=0;$j<count($subconjuntos);$j++){
                 if($f==$subconjuntos[$j][0]){
                     for($i=0;$i<count($subconjuntos[0]);$i++){
-                        $tabla[$c1][$i]=$subconjuntos[$j][$i];                
+                        $tabla[$c1][$i]=$subconjuntos[$j][$i];              
                     }
                     $c1+=1;
                 }
@@ -101,10 +94,10 @@
     }
 
 
-    function recursiva($lamatrih){
+    function recursiva($lamatrih,$automata){
         $cont=0;
         $lamatrih2=$lamatrih;
-        foreach($lamatrih as $tab){
+        foreach($lamatrih2 as $tab){
             $abc1=filasiguales($tab);
             if($abc1!=FALSE){
                 $abc2=array();
@@ -115,24 +108,26 @@
                 }
                 $t1=crearfila($abc1,$tab);
                 $t2=creartabla($abc2,$tab);
+                array_push($t2,$t1);
                 $lamatrih2[$cont]=$t2;
-                array_push($lamatrih2,$t1);
                 $lamatrih2=cambiarestados($lamatrih2,$abc1);
+                if($abc1[0]==$automata->verEI() or $abc1[0]==$automata->verEI()){
+                    $automata->darEI($abc1[0].$abc1[1]);
+                }
             }
             else{
                 $cont+=1;
             }            
         }
-        return $lamatrih2;
-        
+        return $lamatrih2; 
     }
 
     function crearfila($abc1,$tab){
-        $fila[0][0]=$abc1[0].$abc1[1];
+        $fila[0]=$abc1[0].$abc1[1];
         for($j=0;$j<count($tab);$j++){
             if($tab[$j][0]==$abc1[0]){
                 for($i=1;$i<count($tab[$j]);$i++){
-                    $fila[0][$i]=$tab[$j][$i];
+                    $fila[$i]=$tab[$j][$i];
                 }
                 return $fila;
             }
@@ -167,7 +162,33 @@
         return $lamatrih;
     }
 
-    
+    function detablaadatos($lamatrih,$alf,$automata){
+        $estados=array();
+        $transiciones=array();
+        $estadofinal=array();
+        for($t=0;$t<count($lamatrih);$t++){
+            for($j=0;$j<count($lamatrih[$t]);$j++){
+                array_push($estados,$lamatrih[$t][$j][0]);
+                if($t==0){
+                    array_push($estadofinal,$lamatrih[$t][$j][0]);
+                }
+                for($i=1;$i<count($lamatrih[$t][$j]);$i++){
+                    $tupla=array($lamatrih[$t][$j][0],$alf[$i-1],$lamatrih[$t][$j][$i]);
+                    array_push($transiciones,$tupla);
+                }
+            }
+        }
+        $automata->darE($estados);
+        $automata->darEF($estadofinal);
+        $automata->darñe($transiciones);
+    }
+
+    function verfila($fila){
+        foreach($fila as $f){
+            echo $f."--";
+        }
+        echo "</br>";
+    }
 
 
 

@@ -15,6 +15,7 @@
     $_SESSION["automata2"] = serialize($a2);
     $_SESSION["automatas"] = array ($_SESSION["automata1"],$_SESSION["automata2"]);
     //header("Location:formulario0.php");
-    ver($a3);  
+    ver($a1);  
     simplificar($a1);
+    ver($a1);
     ?>

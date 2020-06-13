@@ -8,7 +8,7 @@
         $m->darE(llenararreglos($_POST["Estados"]));
     }
     if(!empty($_POST["Estadoincial"])){
-        $m->darEI(llenararreglos($_POST["Estadoincial"]));
+        $m->darEI($_POST["Estadoincial"]);
     }
     if(!empty($_POST["Estadofinal"])){
         $m->darEF(llenararreglos($_POST["Estadofinal"]));
