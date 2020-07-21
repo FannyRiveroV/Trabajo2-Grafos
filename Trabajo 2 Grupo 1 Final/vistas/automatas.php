@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col-2"></div>
         <div class="col-8"> <br> <br>
-          <h3  class="display-4  text-center">Automatas</h3> <hr>
+          <h3  class="display-4  text-center">Ingreso de Automatas</h3> <hr>
           <div class="container mx-auto">
             <div class="form-group px-5 shadow p-3 mb-5 bg-white rounded">
 

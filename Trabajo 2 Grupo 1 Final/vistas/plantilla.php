@@ -25,28 +25,28 @@
 
 <body>
 
-  <div class="d-flex" id="content-wrapper">
+  <div class="d-flex badge-secondary" id="content-wrapper">
 
-
-    <!-- Sidebar -->
-    <div id="sidebar-container" class="bg-light border-right">
-      <div class="logo">
-        <h2 class="font-weight-bold mb-0" style="text-align: center;">Grafos</h2>
-      </div>
-      <div class="menu list-group-flush">
-        <a href="index.php?pagina=inicio" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0">
-          <em class="material-icons"> account_circle </em> Nosotros </a>
-        <a href="index.php?pagina=automatas" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0">
-          <em class="material-icons">add_circle</em>  Ingresar Automatas </a>
-        <a href="#" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0">
-          <em class="material-icons">adjust</em>  AFD Equivalente </a>
-        <a href="#" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0">
-          <em class="material-icons">blur_circular</em>  Union Automatas </a>
-        <a href="#" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0">
-          <em class="material-icons">border_style</em> Simplificación </a>
-
-
-      </div>
+  <!-- Sidebar -->
+    <div id="sidebar-container" class=" border-right bgimg ">
+      <div class="logo bgdegree">
+        <h2 class="font-weight-bold mb-0  " style="text-align: center;">Automatas</h2>
+    </div> 
+    <div class="menu list-group-flush"> 
+      <a href="index.php?pagina=automatas" class="list-group-item list-group-item-action text-muted  p-3 border-0">
+        <i class="material-icons">add_circle</i>  Ingresar Automatas </a>
+      <!-- <a href="#" class="list-group-item list-group-item-action text-muted  p-3 border-0">
+        <i class="material-icons">adjust</i>  AFD Equivalente </a>
+      <a href="#" class="list-group-item list-group-item-action text-muted  p-3 border-0">
+      <i class="material-icons">blur_circular</i>  Union Automatas </a>
+    <a href="index.php?pagina=simplificar" class="list-group-item list-group-item-action text-muted  p-3 border-0">
+        <i class="material-icons">border_style</i> Simplificación </a>-->
+      <a href="index.php?pagina=nosotros" class="list-group-item list-group-item-action text-muted  p-3 border-0">
+        <i class="material-icons"> account_circle </i> Nosotros </a>
+      <a href="index.php?pagina=inicio" class="list-group-item list-group-item-action text-muted  p-3 border-0">Volver al Inicio</a>  
+    </div>
+  </div>
+  <!-- Fin sidebar -->
     </div>
      <?php 
      $pagina='pagina';
@@ -55,8 +55,8 @@
           $_GET[$pagina] == "automatas" || $_GET[$pagina] == "estados" || $_GET[$pagina] == "muestraestados" 
           || $_GET[$pagina] == "transiciones" || $_GET[$pagina] == "complemento" || $_GET[$pagina] == "union"
           || $_GET[$pagina] == "concatenacion" || $_GET[$pagina] == "transformacion" || $_GET[$pagina] == "simplificar"
-          || $_GET[$pagina] == "interseccion" ){
-					include "vistas/".$_GET[$pagina].".php";
+          || $_GET[$pagina] == "interseccion" || $_GET[$pagina] == "nosotros" ){
+            include "vistas/".$_GET[$pagina].".php";
 				}else{
 					include "vistas/inicio.php";
 				}

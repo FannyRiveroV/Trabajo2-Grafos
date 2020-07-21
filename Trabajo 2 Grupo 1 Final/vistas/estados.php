@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-2"></div>
         <div class="col-8"> <br> <br>
-          <h3  class="display-4  text-center">Autómatas</h3> <hr>
+          <h3  class="display-4  text-center">Ingreso de Autómatas</h3> <hr>
           <div class="container mx-auto">
             <div class="form-group px-5 shadow p-3 mb-5 bg-white rounded">
 
@@ -107,7 +107,7 @@
 
 
 
-                <input type="submit" value="Next">
+                <input type="submit" value="Avanzar">
                 <input type="hidden" name='cantida_estados_1' value="<?php echo $cant_array?>">
                 <input type="hidden" name='cantida_estados_2' value="<?php echo $cant_array2?>">
                 <input type="hidden" name='tipo_auto' value="<?php echo $tipo_auto?>">
