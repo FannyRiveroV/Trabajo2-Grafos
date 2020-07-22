@@ -10,14 +10,12 @@
       <div class="row">
         <div class="col-2"></div>
         <div class="col-8"> <br> <br>
-          <h3  class="display-4  text-center">Automatas</h3> <hr>
+          <h3  class="display-4  text-center">Autómatas</h3> <hr>
           <div class="container mx-auto">
             <div class="form-group px-5 shadow p-3 mb-5 bg-white rounded">
-
             <?php 
                 //recuperamos los datos de los automatas
 
-                
                 $cant_array= $_POST['cantida_estados_1'];
                 $cant_array2= $_POST['cantida_estados_2'];
                 $tipo_auto=$_POST['tipo_auto'];
@@ -160,7 +158,7 @@
                     }
                   echo "}<br>";
 
-                  echo 'δ_1: {';
+                  echo 'δ_1 = {';
                     $aux=0;
                     for($a=0; $a < $cant_array; $a++){
                       for($b=0; $b <count($lenguaje_1); $b++){
@@ -169,8 +167,6 @@
                       }
                     }
                     echo "}<br><br>";
-
-
 
 
 
@@ -196,7 +192,7 @@
                     }
                   echo "}<br>";
 
-                  echo 'δ_2: {';
+                  echo 'δ_2 = {';
                     $aux=0;
                     for($a=0; $a < $cant_array2; $a++){
                       for($b=0; $b <count($lenguaje_2); $b++){
@@ -210,7 +206,6 @@
             
                 if($tipo_auto=="1afnd")
                 {
-                
                   while( isset($_POST['t_'.$cont]) == 'true')
                   {
                       array_push($t1,$_POST['t_'.$cont]);
@@ -218,9 +213,7 @@
                   }
                 
                   while( isset($_POST['t2_'.$cont2]) == 'true'){
-                    //if($_POST['t2_'.$cont2]!='x')
-                    //{
-                      //echo 'contador: '.$cont2.'<br>';
+                 
                       $t2[$cont2]=$_POST['t2_'.$cont2];
                       
                     //
@@ -249,7 +242,7 @@
                     }
                   echo "}<br>";
 
-                  echo 'δ_1: {';
+                  echo 'δ_1 = {';
                     $aux=0;
                     for($a=0; $a < $cant_array; $a++){
                       for($b=0; $b <count($lenguaje_1); $b++){
@@ -282,7 +275,7 @@
                         echo $lenguaje_2[$a].",";
                     }
                   echo "}<br>";
-                  echo 'δ_2: {';
+                  echo 'δ_2 = {';
 
                   $cont2=0;
                   for($a=0; $a < $cant_array2; $a++){
@@ -306,18 +299,13 @@
                 if($tipo_auto=="2afnd")
                 {               
                   while( isset($_POST['t_'.$cont]) == 'true'){
-                    //if($_POST['t_'.$cont]!='x')
-                    //{
-                      //echo 'contador: '.$cont.'<br>';
+                 
                       $t1[$cont]=$_POST['t_'.$cont];
                     //
                     $cont++;
                   }
              
                   while( isset($_POST['t2_'.$cont2]) == 'true'){
-                    //if($_POST['t2_'.$cont2]!='x')
-                    //{
-                      //echo 'contador: '.$cont2.'<br>';
                       $t2[$cont2]=$_POST['t2_'.$cont2];
                       
                     //
@@ -347,7 +335,7 @@
                         echo $lenguaje_1[$a].",";
                     }
                   echo "}<br>";
-                  echo 'δ_1: {';
+                  echo 'δ_1 = {';
 
                   $cont=0;
                   for($a=0; $a < $cant_array; $a++){
@@ -386,7 +374,7 @@
                         echo $lenguaje_2[$a].",";
                     }
                   echo "}<br>";
-                  echo 'δ_2: {';
+                  echo 'δ_2 = {';
 
                   $cont2=0;
                   for($a=0; $a < $cant_array2; $a++){
@@ -400,7 +388,6 @@
                         $cont2++;
                       }
                     }
-                   
                   }
                   echo'}';
 
@@ -409,370 +396,547 @@
                 
             ?>
             
-        <form action="index.php?pagina=complemento" method="POST">
-              <?php
+              <form action="index.php?pagina=complemento" method="POST">
+                    <?php
 
-                echo '<input type="hidden" name="tipo_auto" value="'.$tipo_auto.'">';
+                      echo '<input type="hidden" name="tipo_auto" value="'.$tipo_auto.'">';
 
-                if($tipo_auto=="2afd")
-                {
-                  echo '<input type="hidden" name="cant_est1" value="'.$cant_array.'">
-                        <input type="hidden" name="cant_est2" value="'.$cant_array2.'">
+                      if($tipo_auto=="2afd")
+                      {
+                        echo '<input type="hidden" name="cant_est1" value="'.$cant_array.'">
+                              <input type="hidden" name="cant_est2" value="'.$cant_array2.'">
 
-                        <input type="hidden" name="cant_fin" value="'.count($Final1).'">
-                        <input type="hidden" name="cant_fin2" value="'.count($Final2).'">
+                              <input type="hidden" name="cant_fin" value="'.count($Final1).'">
+                              <input type="hidden" name="cant_fin2" value="'.count($Final2).'">
 
-                        <input type="hidden" name="cant_leng1" value="'.count($lenguaje_1).'">
-                        <input type="hidden" name="cant_leng2" value="'.count($lenguaje_2).'">
+                              <input type="hidden" name="cant_leng1" value="'.count($lenguaje_1).'">
+                              <input type="hidden" name="cant_leng2" value="'.count($lenguaje_2).'">
 
-                        <input type="hidden" name="cant_tran1" value="'.count($t1).'">
-                        <input type="hidden" name="cant_tran2" value="'.count($t2).'">
+                              <input type="hidden" name="cant_tran1" value="'.count($t1).'">
+                              <input type="hidden" name="cant_tran2" value="'.count($t2).'">
+                              
+                        ';
+
+
+
+                        for($a=0;$a<count($K1);$a++){
+                          echo '<input type="hidden" name="estado1_'.$a.'" value="'.$K1[$a].'">
+                          ';
+                        }
+
+                        echo '<input type="hidden" name="estado_inicial" value="'.$estad_inicial.'">';
+
+                        for($a=0;$a<count($Final1);$a++){
+                          echo '<input type="hidden" name="estados_finales_'.$a.'" value="'.$Final1[$a].'">
+                          ';
+                        }
                         
-                  ';
-
-
-
-                  for($a=0;$a<count($K1);$a++){
-                    echo '<input type="hidden" name="estado1_'.$a.'" value="'.$K1[$a].'">
-                    ';
-                  }
-
-                  echo '<input type="hidden" name="estado_inicial" value="'.$estad_inicial.'">';
-
-                  for($a=0;$a<count($Final1);$a++){
-                    echo '<input type="hidden" name="estados_finales_'.$a.'" value="'.$Final1[$a].'">
-                    ';
-                  }
-                  
-                  for($a=0;$a<count($lenguaje_1);$a++){
-                    echo '<input type="hidden" name="lenguaje_'.$a.'" value="'.$lenguaje_1[$a].'">
-                    ';
-                  }
-                  
-                  for($a=0;$a<count($t1);$a++){
-                    echo '<input type="hidden" name="tran_'.$a.'" value="'.$t1[$a].'">
-                    ';
-                  }
-
-                  //////////////////////////////
-                  //2do automata uwu
-
-                  for($a=0;$a<count($K2);$a++){
-                    echo '<input type="hidden" name="estado2_'.$a.'" value="'.$K2[$a].'">
-                    ';
-                  }
-
-                  echo '<input type="hidden" name="estado_inicial2" value="'.$estad_inicial2.'">';
-
-                  for($a=0;$a<count($Final2);$a++){
-                    echo '<input type="hidden" name="estados2_finales_'.$a.'" value="'.$Final2[$a].'">
-                    ';
-                  }
-                  
-                  for($a=0;$a<count($lenguaje_2);$a++){
-                    echo '<input type="hidden" name="lenguaje2_'.$a.'" value="'.$lenguaje_2[$a].'">
-                    ';
-                  }
-                  for($a=0;$a<count($t2);$a++){
-                    echo '<input type="hidden" name="tran2_'.$a.'" value="'.$t2[$a].'">
-                    ';
-                  }
-                }
-
-                if($tipo_auto=="1afnd")
-                {
-                  echo '<input type="hidden" name="cant_est1" value="'.$cant_array.'">               
-                        <input type="hidden" name="cant_fin" value="'.count($Final1).'">                 
-                        <input type="hidden" name="cant_leng1" value="'.count($lenguaje_1).'">
-                        <input type="hidden" name="cant_tran1" value="'.count($t1).'">
-               
+                        for($a=0;$a<count($lenguaje_1);$a++){
+                          echo '<input type="hidden" name="lenguaje_'.$a.'" value="'.$lenguaje_1[$a].'">
+                          ';
+                        }
                         
-                  ';
+                        for($a=0;$a<count($t1);$a++){
+                          echo '<input type="hidden" name="tran_'.$a.'" value="'.$t1[$a].'">
+                          ';
+                        }
 
+                        //////////////////////////////
+                        //2do automata uwu
 
+                        for($a=0;$a<count($K2);$a++){
+                          echo '<input type="hidden" name="estado2_'.$a.'" value="'.$K2[$a].'">
+                          ';
+                        }
 
-                  for($a=0;$a<count($K1);$a++){
-                    echo '<input type="hidden" name="estado1_'.$a.'" value="'.$K1[$a].'">
-                    ';
-                  }
+                        echo '<input type="hidden" name="estado_inicial2" value="'.$estad_inicial2.'">';
 
-                  echo '<input type="hidden" name="estado_inicial" value="'.$estad_inicial.'">';
+                        for($a=0;$a<count($Final2);$a++){
+                          echo '<input type="hidden" name="estados2_finales_'.$a.'" value="'.$Final2[$a].'">
+                          ';
+                        }
+                        
+                        for($a=0;$a<count($lenguaje_2);$a++){
+                          echo '<input type="hidden" name="lenguaje2_'.$a.'" value="'.$lenguaje_2[$a].'">
+                          ';
+                        }
+                        for($a=0;$a<count($t2);$a++){
+                          echo '<input type="hidden" name="tran2_'.$a.'" value="'.$t2[$a].'">
+                          ';
+                        }
+                      }
 
-                  for($a=0;$a<count($Final1);$a++){
-                    echo '<input type="hidden" name="estados_finales_'.$a.'" value="'.$Final1[$a].'">
-                    ';
-                  }
-                  
-                  for($a=0;$a<count($lenguaje_1);$a++){
-                    echo '<input type="hidden" name="lenguaje_'.$a.'" value="'.$lenguaje_1[$a].'">
-                    ';
-                  }
-                  
-                  for($a=0;$a<count($t1);$a++){
-                    echo '<input type="hidden" name="tran_'.$a.'" value="'.$t1[$a].'">
-                    ';
-                  }
-                }
-                
-              ?>
-              <?php
-
-                if($tipo_auto=="2afd")
-                {
-                  echo '<input type="submit" value="Complemento de los automatas">';
-                }
-
-                if($tipo_auto=="1afnd"){
-                  echo '<input type="submit" value="Complemento del AFD" >';
-                }
-              ?>
-        </form>
-
-        <form action="index.php?pagina=union" method="POST">
-          <?php
-            
-            echo'<input type="hidden" name="tipo_auto" value="'.$tipo_auto.'">
-
-                 <input type="hidden" name="est_ini" value="'.$estad_inicial.'">
-                 <input type="hidden" name="est_ini2" value="'.$estad_inicial2.'">
-
-                 <input type="hidden" name="cant_est" value="'.count($K1).'">
-                 <input type="hidden" name="cant_est2" value="'.count($K2).'">
-
-                 <input type="hidden" name="cant_fin" value="'.count($Final1).'">
-                 <input type="hidden" name="cant_fin2" value="'.count($Final2).'">
-
-                 <input type="hidden" name="cant_leng" value="'.count($lenguaje_1).'">
-                 <input type="hidden" name="cant_leng2" value="'.count($lenguaje_2).'">';
-
-  
- 
-            for($a=0;$a<count($K1);$a++)
-            {
-              echo '<input type="hidden" name="est_'.$a.'" value="'.$K1[$a].'">';
-            }
-            for($a=0;$a<count($K2);$a++)
-            {
-              echo '<input type="hidden" name="est2_'.$a.'" value="'.$K2[$a].'">';
-            }
-              
-            for($a=0;$a<count($Final1);$a++)
-            {
-              echo '<input type="hidden" name="estfinal_'.$a.'" value="'.$Final1[$a].'">';
-
-            }
-            for($a=0;$a<count($Final2);$a++)
-            {
-              echo '<input type="hidden" name="estfinal2_'.$a.'" value="'.$Final2[$a].'">';
-
-            }
-
-            for($a=0;$a<count($lenguaje_1);$a++)
-            {
-              echo '<input type="hidden" name="leng_'.$a.'" value="'.$lenguaje_1[$a].'">';
-            }
-
-            for($a=0;$a<count($lenguaje_2);$a++)
-            {
-              echo '<input type="hidden" name="leng2_'.$a.'" value="'.$lenguaje_2[$a].'">';
-            }
-
-            if($tipo_auto =="2afd")
-            {
-              $aux=0;
-                for($a=0; $a < $cant_array; $a++){
-                  for($b=0; $b <count($lenguaje_1); $b++){
+                      if($tipo_auto=="1afnd")
+                      {
+                        echo '<input type="hidden" name="cant_est1" value="'.$cant_array.'">               
+                              <input type="hidden" name="cant_fin" value="'.count($Final1).'">                 
+                              <input type="hidden" name="cant_leng1" value="'.count($lenguaje_1).'">
+                              <input type="hidden" name="cant_tran1" value="'.count($t1).'">
                     
-                    echo'<input type=hidden name="trans_'.$aux.'" value="(('.$K1[$a].', '.$lenguaje_1[$b].'), '.$t1[$aux].')">';
-                    $aux++;
-                  }
-                }
-                echo"<input type='hidden' name='cant_trans' value='".$aux."'> ";
-
-                $aux=0;
-                for($a=0; $a < $cant_array2; $a++){
-                  for($b=0; $b <count($lenguaje_2); $b++){
-                    
-                    echo'<input type=hidden name="trans2_'.$aux.'" value="(('.$K2[$a].', '.$lenguaje_2[$b].'), '.$t2[$aux].')">';
-                    $aux++;
-                  }
-                }
-                echo"<input type='hidden' name='cant_trans2' value='".$aux."'> ";
-            }
-
-            if($tipo_auto=="1afnd")
-            {
-           
-                $aux=0;
-                for($a=0; $a < $cant_array; $a++){
-                  for($b=0; $b <count($lenguaje_1); $b++){
-                    
-                    echo'<input type=hidden name="trans_'.$aux.'" value="(('.$K1[$a].', '.$lenguaje_1[$b].'), '.$t1[$aux].')">';
-                    $aux++;
-                  }
-                }
-                echo"<input type='hidden' name='cant_trans' value='".$aux."'> ";
-              
           
-                  $cont2=0;
-                  $aux=0;
-                  for($a=0; $a < $cant_array2; $a++){
-                    for($b=0; $b <count($lenguaje_2); $b++)
-                    {
-                      for($c=0;$c<$Num_trans;$c++){
-                        if($t2[$cont2]!='x')
-                        {
-                          echo'<input type=hidden name="trans2_'.$aux.'" value=" (('.$K2[$a].', '.$lenguaje_2[$b].'), '.$t2[$cont2].') ">';
-                          $aux++;
+                        ';
+
+
+
+                        for($a=0;$a<count($K1);$a++){
+                          echo '<input type="hidden" name="estado1_'.$a.'" value="'.$K1[$a].'">
+                          ';
                         }
-                        $cont2++;
-                      }
-                    }
-                   
-                  }
-                  echo"<input type='hidden' name='cant_trans2' value='".$aux."'> ";
-            
-            }
 
-            if($tipo_auto=="2afnd")
-            {
-              $cont=0;
-                  $aux=0;
-                  for($a=0; $a < $cant_array; $a++){
-                    for($b=0; $b <count($lenguaje_1); $b++)
-                    {
-                      for($c=0;$c<$Num_trans;$c++){
-                        if($t1[$cont]!='x'){
+                        echo '<input type="hidden" name="estado_inicial" value="'.$estad_inicial.'">';
 
-                          echo'<input type=hidden name="trans_'.$aux.'" value=" (('.$K1[$a].', '.$lenguaje_1[$b].'), '.$t1[$cont].') ">';
-                          $aux++;
+                        for($a=0;$a<count($Final1);$a++){
+                          echo '<input type="hidden" name="estados_finales_'.$a.'" value="'.$Final1[$a].'">
+                          ';
                         }
-                        $cont++;
+                        
+                        for($a=0;$a<count($lenguaje_1);$a++){
+                          echo '<input type="hidden" name="lenguaje_'.$a.'" value="'.$lenguaje_1[$a].'">
+                          ';
+                        }
+                        
+                        for($a=0;$a<count($t1);$a++){
+                          echo '<input type="hidden" name="tran_'.$a.'" value="'.$t1[$a].'">
+                          ';
+                        }
                       }
-                    }
-                   
-                  }
-                  echo"<input type='hidden' name='cant_trans' value='".$aux."'> ";
-
-                  
-              $cont=0;
-              $aux=0;
-              for($a=0; $a < $cant_array2; $a++){
-                for($b=0; $b <count($lenguaje_2); $b++)
-                {
-                  for($c=0;$c<$Num_trans2;$c++){
-                    if($t1[$cont]!='x'){
-
-                      echo'<input type=hidden name="trans2_'.$aux.'" value=" (('.$K2[$a].', '.$lenguaje_2[$b].'), '.$t2[$cont].') ">';
-                      $aux++;
-                    }
-                    $cont++;
-                  }
-                }
-               
-              }
-              echo"<input type='hidden' name='cant_trans2' value='".$aux."'> ";
-            }
-
-
-          ?>
-            <input type="submit" value="Union de los automatas">
-        </form>
-        
-        <form action="index.php?pagina=concatenacion" method="POST">
-          <?php
-          echo'<input type="hidden" name="tipo_auto" value="'.$tipo_auto.'">
-            
-
-            <input type="hidden" name="est_ini" value="'.$estad_inicial.'">
-            <input type="hidden" name="est_ini2" value="'.$estad_inicial2.'">
-
-            <input type="hidden" name="cant_est" value="'.count($K1).'">
-            <input type="hidden" name="cant_est2" value="'.count($K2).'">
-
-            <input type="hidden" name="cant_fin" value="'.count($Final1).'">
-            <input type="hidden" name="cant_fin2" value="'.count($Final2).'">
-
-            <input type="hidden" name="cant_leng" value="'.count($lenguaje_1).'">
-            <input type="hidden" name="cant_leng2" value="'.count($lenguaje_2).'">';
-
-            for($a=0;$a<count($K1);$a++)
-            {
-              echo '<input type="hidden" name="est_'.$a.'" value="'.$K1[$a].'">';
-            }
-            for($a=0;$a<count($K2);$a++)
-            {
-              echo '<input type="hidden" name="est2_'.$a.'" value="'.$K2[$a].'">';
-            }
-              
-            for($a=0;$a<count($Final1);$a++)
-            {
-              echo '<input type="hidden" name="estfinal_'.$a.'" value="'.$Final1[$a].'">';
-
-            }
-            for($a=0;$a<count($Final2);$a++)
-            {
-              echo '<input type="hidden" name="estfinal2_'.$a.'" value="'.$Final2[$a].'">';
-
-            }
-
-            for($a=0;$a<count($lenguaje_1);$a++)
-            {
-              echo '<input type="hidden" name="leng_'.$a.'" value="'.$lenguaje_1[$a].'">';
-            }
-
-            for($a=0;$a<count($lenguaje_2);$a++)
-            {
-              echo '<input type="hidden" name="leng2_'.$a.'" value="'.$lenguaje_2[$a].'">';
-            }
-
-            if($tipo_auto =="2afd")
-            {
-              $aux=0;
-                for($a=0; $a < $cant_array; $a++){
-                  for($b=0; $b <count($lenguaje_1); $b++){
-                    
-                    echo'<input type=hidden name="trans_'.$aux.'" value="(('.$K1[$a].', '.$lenguaje_1[$b].'), '.$t1[$aux].')">';
-                    $aux++;
-                  }
-                }
-                echo"<input type='hidden' name='cant_trans' value='".$aux."'> ";
-
-                $aux=0;
-                for($a=0; $a < $cant_array2; $a++){
-                  for($b=0; $b <count($lenguaje_2); $b++){
-                    
-                    echo'<input type=hidden name="trans2_'.$aux.'" value="(('.$K2[$a].', '.$lenguaje_2[$b].'), '.$t2[$aux].')">';
-                    $aux++;
-                  }
-                }
-                echo"<input type='hidden' name='cant_trans2' value='".$aux."'> ";
-            }
-
-            if($tipo_auto=="1afnd")
-            {
-            
-                  $aux=0;
-                  for($a=0; $a < $cant_array; $a++){
-                    for($b=0; $b <count($lenguaje_1); $b++){
                       
-                      echo'<input type=hidden name="trans_'.$aux.'" value="(('.$K1[$a].', '.$lenguaje_1[$b].'), '.$t1[$aux].')">';
-                      $aux++;
-                    }
+                    ?>
+                    <?php
+
+                      if($tipo_auto=="2afd")
+                      {
+                        echo '<input type="submit" value="Complemento de los automatas">';
+                      }
+
+                      if($tipo_auto=="1afnd"){
+                        echo '<input type="submit" value="Complemento del AFD" >';
+                      }
+                    ?>
+              </form>
+
+              <form action="index.php?pagina=union" method="POST">
+                <?php
+                  
+                  echo'<input type="hidden" name="tipo_auto" value="'.$tipo_auto.'">
+
+                      <input type="hidden" name="est_ini" value="'.$estad_inicial.'">
+                      <input type="hidden" name="est_ini2" value="'.$estad_inicial2.'">
+
+                      <input type="hidden" name="cant_est" value="'.count($K1).'">
+                      <input type="hidden" name="cant_est2" value="'.count($K2).'">
+
+                      <input type="hidden" name="cant_fin" value="'.count($Final1).'">
+                      <input type="hidden" name="cant_fin2" value="'.count($Final2).'">
+
+                      <input type="hidden" name="cant_leng" value="'.count($lenguaje_1).'">
+                      <input type="hidden" name="cant_leng2" value="'.count($lenguaje_2).'">';
+
+        
+      
+                  for($a=0;$a<count($K1);$a++)
+                  {
+                    echo '<input type="hidden" name="est_'.$a.'" value="'.$K1[$a].'">';
                   }
-                  echo"<input type='hidden' name='cant_trans' value='".$aux."'> ";
+                  for($a=0;$a<count($K2);$a++)
+                  {
+                    echo '<input type="hidden" name="est2_'.$a.'" value="'.$K2[$a].'">';
+                  }
+                    
+                  for($a=0;$a<count($Final1);$a++)
+                  {
+                    echo '<input type="hidden" name="estfinal_'.$a.'" value="'.$Final1[$a].'">';
+
+                  }
+                  for($a=0;$a<count($Final2);$a++)
+                  {
+                    echo '<input type="hidden" name="estfinal2_'.$a.'" value="'.$Final2[$a].'">';
+
+                  }
+
+                  for($a=0;$a<count($lenguaje_1);$a++)
+                  {
+                    echo '<input type="hidden" name="leng_'.$a.'" value="'.$lenguaje_1[$a].'">';
+                  }
+
+                  for($a=0;$a<count($lenguaje_2);$a++)
+                  {
+                    echo '<input type="hidden" name="leng2_'.$a.'" value="'.$lenguaje_2[$a].'">';
+                  }
+
+                  if($tipo_auto =="2afd")
+                  {
+                    $aux=0;
+                      for($a=0; $a < $cant_array; $a++){
+                        for($b=0; $b <count($lenguaje_1); $b++){
+                          
+                          echo'<input type=hidden name="trans_'.$aux.'" value="'.$K1[$a].','.$lenguaje_1[$b].','.$t1[$aux].'">';
+                          $aux++;
+                        }
+                      }
+                      echo"<input type='hidden' name='cant_trans' value='".$aux."'> ";
+
+                      $aux=0;
+                      for($a=0; $a < $cant_array2; $a++){
+                        for($b=0; $b <count($lenguaje_2); $b++){
+                          
+                          echo'<input type=hidden name="trans2_'.$aux.'" value="'.$K2[$a].','.$lenguaje_2[$b].','.$t2[$aux].'">';
+                          $aux++;
+                        }
+                      }
+                      echo"<input type='hidden' name='cant_trans2' value='".$aux."'> ";
+                  }
+
+                  if($tipo_auto=="1afnd")
+                  {
                 
-            
-                    $cont2=0;
+                      $aux=0;
+                      for($a=0; $a < $cant_array; $a++){
+                        for($b=0; $b <count($lenguaje_1); $b++){
+                          
+                          echo'<input type=hidden name="trans_'.$aux.'" value="(('.$K1[$a].', '.$lenguaje_1[$b].'), '.$t1[$aux].')">';
+                          $aux++;
+                        }
+                      }
+                      echo"<input type='hidden' name='cant_trans' value='".$aux."'> ";
+                    
+                
+                        $cont2=0;
+                        $aux=0;
+                        for($a=0; $a < $cant_array2; $a++){
+                          for($b=0; $b <count($lenguaje_2); $b++)
+                          {
+                            for($c=0;$c<$Num_trans;$c++){
+                              if($t2[$cont2]!='x')
+                              {
+                                echo'<input type=hidden name="trans2_'.$aux.'" value=" (('.$K2[$a].', '.$lenguaje_2[$b].'), '.$t2[$cont2].') ">';
+                                $aux++;
+                              }
+                              $cont2++;
+                            }
+                          }
+                        
+                        }
+                        echo"<input type='hidden' name='cant_trans2' value='".$aux."'> ";
+                  
+                  }
+
+                  if($tipo_auto=="2afnd")
+                  {
+                    $cont=0;
+                        $aux=0;
+                        for($a=0; $a < $cant_array; $a++){
+                          for($b=0; $b <count($lenguaje_1); $b++)
+                          {
+                            for($c=0;$c<$Num_trans;$c++){
+                              if($t1[$cont]!='x'){
+
+                                echo'<input type=hidden name="trans_'.$aux.'" value=" (('.$K1[$a].', '.$lenguaje_1[$b].'), '.$t1[$cont].') ">';
+                                $aux++;
+                              }
+                              $cont++;
+                            }
+                          }
+                        
+                        }
+                        echo"<input type='hidden' name='cant_trans' value='".$aux."'> ";
+
+                        
+                    $cont=0;
+                    $aux=0;
+                    for($a=0; $a < $cant_array2; $a++){
+                      for($b=0; $b <count($lenguaje_2); $b++)
+                      {
+                        for($c=0;$c<$Num_trans2;$c++){
+                          if($t1[$cont]!='x'){
+
+                            echo'<input type=hidden name="trans2_'.$aux.'" value=" (('.$K2[$a].', '.$lenguaje_2[$b].'), '.$t2[$cont].') ">';
+                            $aux++;
+                          }
+                          $cont++;
+                        }
+                      }
+                    
+                    }
+                    echo"<input type='hidden' name='cant_trans2' value='".$aux."'> ";
+                  }
+
+
+                ?>
+                  <input type="submit" value="Union de los automatas">
+              </form>
+              
+              <form action="index.php?pagina=concatenacion" method="POST">
+                <?php
+                echo'<input type="hidden" name="tipo_auto" value="'.$tipo_auto.'">
+                  
+                  <input type="hidden" name="est_ini" value="'.$estad_inicial.'">
+                  <input type="hidden" name="est_ini2" value="'.$estad_inicial2.'">
+
+                  <input type="hidden" name="cant_est" value="'.count($K1).'">
+                  <input type="hidden" name="cant_est2" value="'.count($K2).'">
+
+                  <input type="hidden" name="cant_fin" value="'.count($Final1).'">
+                  <input type="hidden" name="cant_fin2" value="'.count($Final2).'">
+
+                  <input type="hidden" name="cant_leng" value="'.count($lenguaje_1).'">
+                  <input type="hidden" name="cant_leng2" value="'.count($lenguaje_2).'">';
+
+                  for($a=0;$a<count($K1);$a++)
+                  {
+                    echo '<input type="hidden" name="est_'.$a.'" value="'.$K1[$a].'">';
+                  }
+                  for($a=0;$a<count($K2);$a++)
+                  {
+                    echo '<input type="hidden" name="est2_'.$a.'" value="'.$K2[$a].'">';
+                  }
+                    
+                  for($a=0;$a<count($Final1);$a++)
+                  {
+                    echo '<input type="hidden" name="estfinal_'.$a.'" value="'.$Final1[$a].'">';
+
+                  }
+                  for($a=0;$a<count($Final2);$a++)
+                  {
+                    echo '<input type="hidden" name="estfinal2_'.$a.'" value="'.$Final2[$a].'">';
+
+                  }
+
+                  for($a=0;$a<count($lenguaje_1);$a++)
+                  {
+                    echo '<input type="hidden" name="leng_'.$a.'" value="'.$lenguaje_1[$a].'">';
+                  }
+
+                  for($a=0;$a<count($lenguaje_2);$a++)
+                  {
+                    echo '<input type="hidden" name="leng2_'.$a.'" value="'.$lenguaje_2[$a].'">';
+                  }
+
+                  if($tipo_auto =="2afd")
+                  {
+                    $aux=0;
+                      for($a=0; $a < $cant_array; $a++){
+                        for($b=0; $b <count($lenguaje_1); $b++){
+                          
+                          echo'<input type=hidden name="trans_'.$aux.'" value="'.$K1[$a].', '.$lenguaje_1[$b].','.$t1[$aux].'">';
+                          $aux++;
+                        }
+                      }
+                      echo"<input type='hidden' name='cant_trans' value='".$aux."'> ";
+
+                      $aux=0;
+                      for($a=0; $a < $cant_array2; $a++){
+                        for($b=0; $b <count($lenguaje_2); $b++){
+                          
+                          echo'<input type=hidden name="trans2_'.$aux.'" value="'.$K2[$a].', '.$lenguaje_2[$b].','.$t2[$aux].'">';
+                          $aux++;
+                        }
+                      }
+                      echo"<input type='hidden' name='cant_trans2' value='".$aux."'> ";
+                  }
+
+                  if($tipo_auto=="1afnd")
+                  {
+                  
+                        $aux=0;
+                        for($a=0; $a < $cant_array; $a++){
+                          for($b=0; $b <count($lenguaje_1); $b++){
+                            
+                            echo'<input type=hidden name="trans_'.$aux.'" value="'.$K1[$a].','.$lenguaje_1[$b].','.$t1[$aux].'">';
+                            $aux++;
+                          }
+                        }
+                        echo"<input type='hidden' name='cant_trans' value='".$aux."'> ";
+                      
+                  
+                          $cont2=0;
+                          $aux=0;
+                          for($a=0; $a < $cant_array2; $a++){
+                            for($b=0; $b <count($lenguaje_2); $b++)
+                            {
+                              for($c=0;$c<$Num_trans;$c++){
+                                if($t2[$cont2]!='x')
+                                {
+                                  echo'<input type=hidden name="trans2_'.$aux.'" value="'.$K2[$a].', '.$lenguaje_2[$b].','.$t2[$cont2].'">';
+                                  $aux++;
+                                }
+                                $cont2++;
+                              }
+                            }
+                          
+                          }
+                          echo"<input type='hidden' name='cant_trans2' value='".$aux."'> ";
+                  }
+
+                  if($tipo_auto=="2afnd")
+                  {
+                    $cont=0;
+                    $aux=0;
+                    for($a=0; $a < $cant_array; $a++){
+                      for($b=0; $b <count($lenguaje_1); $b++)
+                      {
+                        for($c=0;$c<$Num_trans;$c++){
+                          if($t1[$cont]!='x'){
+                            echo'<input type=hidden name="trans_'.$aux.'" value="'.$K1[$a].', '.$lenguaje_1[$b].','.$t1[$cont].'">';
+                            $aux++;
+                          }
+                          $cont++;
+                        }
+                      }    
+                    }
+                    echo"<input type='hidden' name='cant_trans' value='".$aux."'> ";
+
+                    $cont=0;
+                    $aux=0;
+                    for($a=0; $a < $cant_array2; $a++){
+                      for($b=0; $b <count($lenguaje_2); $b++)
+                      {
+                        for($c=0;$c<$Num_trans2;$c++){
+                          if($t2[$cont]!='x'){
+                            echo'<input type=hidden name="trans2_'.$aux.'" value="'.$K2[$a].','.$lenguaje_2[$b].','.$t2[$cont].'">';
+                            $aux++;
+                          }
+                          $cont++;
+                        }
+                      }         
+                    }
+                    echo"<input type='hidden' name='cant_trans2' value='".$aux."'> ";
+
+                  }
+
+                ?>
+                <input type="submit" value="Concatenacion de los automatas">
+                <input type="radio" name="tipo_conc" value="A->B" required>A->B
+                <input type="radio" name="tipo_conc" value="B->B" required>B->A
+                
+              </form>
+                  
+                <form action="index.php?pagina=transformacion" method="POST">
+                  <?php
+                  echo'<input type="hidden" name="tipo_auto" value="'.$tipo_auto.'">';
+
+                  if($tipo_auto=="1afnd")
+                  {
+
+                    echo '<input type="hidden" name="cant_est" value="'.count($K2).'">
+                          <input type="hidden" name="est_ini" value="'.$estad_inicial2.'">
+                          <input type="hidden" name="cant_fin" value="'.count($Final2).'">
+                          <input type="hidden" name="cant_leng" value="'.count($lenguaje_2).'">
+                          
+                          ';
+
+                    for($a=0;$a<count($K2);$a++)
+                    {               
+                      echo '<input type="hidden" name="est_'.$a.'" value="'.$K2[$a].'">';
+                    }
+
+                    for($a=0;$a<count($Final2);$a++)
+                    {               
+                      echo '<input type="hidden" name="estfinal_'.$a.'" value="'.$Final2[$a].'">';
+                    }
+
+                    for($a=0;$a<count($lenguaje_2);$a++)
+                    {               
+                      echo '<input type="hidden" name="leng_'.$a.'" value="'.$lenguaje_2[$a].'">';
+                    }
+                  
+                    $cont=0;
                     $aux=0;
                     for($a=0; $a < $cant_array2; $a++){
                       for($b=0; $b <count($lenguaje_2); $b++)
                       {
                         for($c=0;$c<$Num_trans;$c++){
+                          if($t2[$cont]!='x')
+                          {
+                            echo'<input type=hidden name="trans_'.$aux.'" value="'.$K2[$a].','.$lenguaje_2[$b].','.$t2[$cont].'">';
+                            $aux++;
+                          }
+                          $cont++;
+                        }
+                      }
+                    
+                    }
+                    echo"<input type='hidden' name='cant_trans' value='".$aux."'> ";
+                    echo '<input type="submit" value="Transformar el AFND a AFD">';
+                  }
+
+                  if($tipo_auto=="2afnd")
+                  {
+
+                    echo '<input type="hidden" name="cant_est" value="'.count($K1).'">
+                          <input type="hidden" name="est_ini" value="'.$estad_inicial.'">
+                          <input type="hidden" name="cant_fin" value="'.count($Final1).'">
+                          <input type="hidden" name="cant_leng" value="'.count($lenguaje_1).'">
+                          
+                          ';
+
+                    for($a=0;$a<count($K1);$a++)
+                    {               
+                      echo '<input type="hidden" name="est_'.$a.'" value="'.$K1[$a].'">';
+                    }
+
+                    for($a=0;$a<count($Final1);$a++)
+                    {               
+                      echo '<input type="hidden" name="estfinal_'.$a.'" value="'.$Final1[$a].'">';
+                    }
+
+                    for($a=0;$a<count($lenguaje_1);$a++)
+                    {               
+                      echo '<input type="hidden" name="leng_'.$a.'" value="'.$lenguaje_1[$a].'">';
+                    }
+                  
+                    $cont=0;
+                    $aux=0;
+                    for($a=0; $a < $cant_array; $a++){
+                      for($b=0; $b <count($lenguaje_1); $b++)
+                      {
+                        for($c=0;$c<$Num_trans;$c++){
+                          if($t1[$cont]!='x')
+                          {
+                            echo'<input type=hidden name="trans_'.$aux.'" value="'.$K1[$a].','.$lenguaje_1[$b].','.$t1[$cont].'">';
+                            $aux++;
+                          }
+                          $cont++;
+                        }
+                      }
+                    
+                    }
+                    echo"<input type='hidden' name='cant_trans' value='".$aux."'> ";
+
+
+
+                    echo '<input type="hidden" name="cant_est2" value="'.count($K2).'">
+                          <input type="hidden" name="est_ini2" value="'.$estad_inicial2.'">
+                          <input type="hidden" name="cant_fin2" value="'.count($Final2).'">
+                          <input type="hidden" name="cant_leng2" value="'.count($lenguaje_2).'">
+                          
+                          ';
+
+                    for($a=0;$a<count($K2);$a++)
+                    {               
+                      echo '<input type="hidden" name="est2_'.$a.'" value="'.$K2[$a].'">';
+                    }
+
+                    for($a=0;$a<count($Final2);$a++)
+                    {               
+                      echo '<input type="hidden" name="estfinal2_'.$a.'" value="'.$Final2[$a].'">';
+                    }
+
+                    for($a=0;$a<count($lenguaje_2);$a++)
+                    {               
+                      echo '<input type="hidden" name="leng2_'.$a.'" value="'.$lenguaje_2[$a].'">';
+                    }
+                  
+                    $cont2=0;
+                    $aux2=0;
+                    for($a=0; $a < $cant_array2; $a++){
+                      for($b=0; $b <count($lenguaje_2); $b++)
+                      {
+                        for($c=0;$c<$Num_trans2;$c++){
                           if($t2[$cont2]!='x')
                           {
-                            echo'<input type=hidden name="trans2_'.$aux.'" value=" (('.$K2[$a].', '.$lenguaje_2[$b].'), '.$t2[$cont2].') ">';
-                            $aux++;
+                            echo'<input type=hidden name="trans2_'.$aux2.'" value="'.$K2[$a].','.$lenguaje_2[$b].','.$t2[$cont2].'">';
+                            $aux2++;
                           }
                           $cont2++;
                         }
@@ -780,149 +944,193 @@
                     
                     }
                     echo"<input type='hidden' name='cant_trans2' value='".$aux."'> ";
-            }
-
-            if($tipo_auto=="2afnd")
-            {
-              $cont=0;
-              $aux=0;
-              for($a=0; $a < $cant_array; $a++){
-                for($b=0; $b <count($lenguaje_1); $b++)
-                {
-                  for($c=0;$c<$Num_trans;$c++){
-                    if($t1[$cont]!='x'){
-                      echo'<input type=hidden name="trans_'.$aux.'" value=" (('.$K1[$a].', '.$lenguaje_1[$b].'), '.$t1[$cont].') ">';
-                      $aux++;
-                    }
-                    $cont++;
-                  }
-                }    
-              }
-              echo"<input type='hidden' name='cant_trans' value='".$aux."'> ";
-
-              $cont=0;
-              $aux=0;
-              for($a=0; $a < $cant_array2; $a++){
-                for($b=0; $b <count($lenguaje_2); $b++)
-                {
-                  for($c=0;$c<$Num_trans2;$c++){
-                    if($t2[$cont]!='x'){
-                      echo'<input type=hidden name="trans2_'.$aux.'" value=" (('.$K2[$a].', '.$lenguaje_2[$b].'), '.$t2[$cont].') ">';
-                      $aux++;
-                    }
-                    $cont++;
-                  }
-                }         
-              }
-              echo"<input type='hidden' name='cant_trans2' value='".$aux."'> ";
-
-            }
-
-          ?>
-          <input type="submit" value="Concatenacion de los automatas">
-          <input type="radio" name="tipo_conc" value="A->B" required>A->B
-          <input type="radio" name="tipo_conc" value="B->B" required>B->A
-          
-        </form>
-            
-
-
-          <form action="index.php?pagina=transformacion" method="POST">
-            <?php
-            
-            if($tipo_auto=="1afnd")
-            {
-
-              echo '<input type="hidden" name="cant_est" value="'.count($K2).'">
-                    <input type="hidden" name="est_ini" value="'.$estad_inicial2.'">
-                    <input type="hidden" name="cant_fin" value="'.count($Final2).'">
-                    <input type="hidden" name="cant_leng" value="'.count($lenguaje_2).'">
                     
-                    ';
-
-              for($a=0;$a<count($K2);$a++)
-              {               
-                echo '<input type="hidden" name="est_'.$a.'" value="'.$K2[$a].'">';
-              }
-
-              for($a=0;$a<count($Final2);$a++)
-              {               
-                echo '<input type="hidden" name="estfinal_'.$a.'" value="'.$Final2[$a].'">';
-              }
-
-              for($a=0;$a<count($lenguaje_2);$a++)
-              {               
-                echo '<input type="hidden" name="leng_'.$a.'" value="'.$lenguaje_2[$a].'">';
-              }
-             
-              $cont=0;
-              $aux=0;
-              for($a=0; $a < $cant_array2; $a++){
-                for($b=0; $b <count($lenguaje_2); $b++)
-                {
-                  for($c=0;$c<$Num_trans;$c++){
-                    if($t2[$cont]!='x')
-                    {
-                      echo'<input type=hidden name="trans_'.$aux.'" value="'.$K2[$a].','.$lenguaje_2[$b].','.$t2[$cont].'">';
-                      $aux++;
-                    }
-                    $cont++;
+                    echo "<input type='submit' value='Transformar los AFNDs a AFDs'>";
                   }
-                }
-               
-              }
-              echo"<input type='hidden' name='cant_trans' value='".$aux."'> ";
-            }
-            if($tipo_auto=="2afnd")
-            {
-              $cont=0;
-              $aux=0;
-              for($a=0; $a < $cant_array; $a++){
-                for($b=0; $b <count($lenguaje_1); $b++)
-                {
-                  for($c=0;$c<$Num_trans;$c++){
-                    if($t1[$cont]!='x'){
 
-                      echo'<input type=hidden name="trans_'.$aux.'" value=" (('.$K1[$a].', '.$lenguaje_1[$b].'), '.$t1[$cont].') ">';
-                      $aux++;
-                    }
-                    $cont++;
-                  }
-                }
-                   
-              }
-              echo"<input type='hidden' name='cant_trans' value='".$aux."'> ";
+                  ?>
 
                   
-              $cont=0;
-              $aux=0;
-              for($a=0; $a < $cant_array2; $a++){
-                for($b=0; $b <count($lenguaje_2); $b++)
-                {
-                  for($c=0;$c<$Num_trans2;$c++){
-                    if($t2[$cont]!='x'){
+                </form>
 
-                      echo'<input type=hidden name="trans2_'.$aux.'" value=" (('.$K2[$a].', '.$lenguaje_2[$b].'), '.$t2[$cont].') ">';
-                      $aux++;
-                    }
-                    $cont++;
+              <form action="index.php?pagina=simplificar" method="POST">
+                <?php
+                
+                echo'<input type="hidden" name="tipo_auto" value="'.$tipo_auto.'">
+                    <input type="hidden" name="est_ini" value="'.$estad_inicial.'">
+                    <input type="hidden" name="est_ini2" value="'.$estad_inicial2.'">
+
+                    <input type="hidden" name="cant_est" value="'.count($K1).'">
+                    <input type="hidden" name="cant_est2" value="'.count($K2).'">
+
+                    <input type="hidden" name="cant_fin" value="'.count($Final1).'">
+                    <input type="hidden" name="cant_fin2" value="'.count($Final2).'">
+
+                    <input type="hidden" name="cant_leng" value="'.count($lenguaje_1).'">
+                    <input type="hidden" name="cant_leng2" value="'.count($lenguaje_2).'">';
+
+                  for($a=0;$a<count($K1);$a++)
+                  {
+                    echo '<input type="hidden" name="est_'.$a.'" value="'.$K1[$a].'">';
                   }
-                }
-               
-              }
-              echo"<input type='hidden' name='cant_trans2' value='".$aux."'> ";
-            }
+                  for($a=0;$a<count($K2);$a++)
+                  {
+                    echo '<input type="hidden" name="est2_'.$a.'" value="'.$K2[$a].'">';
+                  }
+                    
+                  for($a=0;$a<count($Final1);$a++)
+                  {
+                    echo '<input type="hidden" name="estfinal_'.$a.'" value="'.$Final1[$a].'">';
 
-            ?>
+                  }
+                  for($a=0;$a<count($Final2);$a++)
+                  {
+                    echo '<input type="hidden" name="estfinal2_'.$a.'" value="'.$Final2[$a].'">';
 
-            <input type="submit" value="Transformar el AFND a AFD">
-          </form>
+                  }
+
+                  for($a=0;$a<count($lenguaje_1);$a++)
+                  {
+                    echo '<input type="hidden" name="leng_'.$a.'" value="'.$lenguaje_1[$a].'">';
+                  }
+
+                  for($a=0;$a<count($lenguaje_2);$a++)
+                  {
+                    echo '<input type="hidden" name="leng2_'.$a.'" value="'.$lenguaje_2[$a].'">';
+                  }
+
+                  if($tipo_auto == "2afd")
+                  {
+                    echo '<input type="hidden" name="cant_trans" value="'.count($t1).'">';
+                    $aux=0;
+                    for($a=0; $a < $cant_array; $a++){
+                      for($b=0; $b <count($lenguaje_1); $b++){
+                        echo '<input type="hidden" name="trans_'.$aux.'" value="'.$K1[$a].','.$lenguaje_1[$b].','.$t1[$aux].'">';
+                        $aux++;
+                        }
+                      }
+
+
+                    echo '<input type="hidden" name="cant_trans2" value="'.count($t2).'">';
+                    $aux2=0;
+                    for($a=0; $a < $cant_array2; $a++){
+                      for($b=0; $b <count($lenguaje_2); $b++){
+                        echo '<input type="hidden" name="trans2_'.$aux2.'" value="'.$K2[$a].','.$lenguaje_2[$b].','.$t2[$aux2].'">';
+                        $aux2++;
+                        }
+                      }
+
+                  }
+
+
+                  if($tipo_auto=="1afnd")
+                  {
+                    
+                    echo '<input type="hidden" name="cant_trans" value="'.count($t1).'">';
+                    $aux=0;
+                    for($a=0; $a < $cant_array; $a++){
+                      for($b=0; $b <count($lenguaje_1); $b++){
+                        echo '<input type="hidden" name="trans_'.$aux.'" value="'.$K1[$a].','.$lenguaje_1[$b].','.$t1[$aux].'">';
+                        $aux++;
+                      }
+                    }
+                  }
+
+
+                ?>
+                <input type="submit" value="Simplificar AFD">
+              </form>
+
+              <form action="index.php?pagina=interseccion" method="POST">
+                
+                  <?php
+
+                    echo '<input type="hidden" name="tipo_auto" value="'.$tipo_auto.'">';
+
+                    if($tipo_auto=="2afd")
+                    {
+                      echo '<input type="hidden" name="cant_est" value="'.$cant_array.'">
+                            <input type="hidden" name="cant_est2" value="'.$cant_array2.'">
+
+                            <input type="hidden" name="cant_fin" value="'.count($Final1).'">
+                            <input type="hidden" name="cant_fin2" value="'.count($Final2).'">
+
+                            <input type="hidden" name="cant_leng" value="'.count($lenguaje_1).'">
+                            <input type="hidden" name="cant_leng2" value="'.count($lenguaje_2).'">
+                            
+                      ';
+
+
+
+                      for($a=0;$a<count($K1);$a++){
+                        echo '<input type="hidden" name="est_'.$a.'" value="'.$K1[$a].'">
+                        ';
+                      }
+
+                      echo '<input type="hidden" name="est_ini" value="'.$estad_inicial.'">';
+
+                      for($a=0;$a<count($Final1);$a++){
+                        echo '<input type="hidden" name="estfinal_'.$a.'" value="'.$Final1[$a].'">
+                        ';
+                      }
+                      
+                      for($a=0;$a<count($lenguaje_1);$a++){
+                        echo '<input type="hidden" name="leng_'.$a.'" value="'.$lenguaje_1[$a].'">
+                        ';
+                      }
+                      
+                      $aux=0;
+                      for($a=0; $a < $cant_array; $a++){
+                        for($b=0; $b <count($lenguaje_1); $b++){
+                          
+                          echo'<input type=hidden name="trans_'.$aux.'" value="'.$K1[$a].','.$lenguaje_1[$b].','.$t1[$aux].'">';
+                          $aux++;
+                        }
+                      }
+                      echo"<input type='hidden' name='cant_trans' value='".$aux."'> ";
+
+                      //////////////////////////////
+                      //2do automata uwu
+
+                      for($a=0;$a<count($K2);$a++){
+                        echo '<input type="hidden" name="est2_'.$a.'" value="'.$K2[$a].'">
+                        ';
+                      }
+
+                      echo '<input type="hidden" name="est_ini2" value="'.$estad_inicial2.'">';
+
+                      for($a=0;$a<count($Final2);$a++){
+                        echo '<input type="hidden" name="estfinal2_'.$a.'" value="'.$Final2[$a].'">
+                        ';
+                      }
+                      
+                      for($a=0;$a<count($lenguaje_2);$a++){
+                        echo '<input type="hidden" name="leng2_'.$a.'" value="'.$lenguaje_2[$a].'">
+                        ';
+                      }
+
+                      $aux=0;
+                      for($a=0; $a < $cant_array2; $a++){
+                        for($b=0; $b <count($lenguaje_2); $b++){
+                          
+                          echo'<input type=hidden name="trans2_'.$aux.'" value="'.$K2[$a].','.$lenguaje_2[$b].','.$t2[$aux].'">';
+                          $aux++;
+                        }
+                      }
+                      echo"<input type='hidden' name='cant_trans2' value='".$aux."'>
+                          <input type='submit' value='Intersección de automatas'>";
+                    }
+                    
+
+                  ?>
+              
+              </form>
+
+              </div>
             </div>
           </div>
         </div>
         <div class="col-2"></div>
-
-        
       </div>
     </div>
 

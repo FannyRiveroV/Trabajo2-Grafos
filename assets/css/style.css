@@ -1,44 +1,204 @@
 :root {
-  --primary: #0b254b;
+  --primary: rgb(175, 173, 173);
   --light: #ffffff;
-  --light-blue: #F5F6FA;
+  --fondo: #df1515;
+  --light-blue: #f5eeee;
   --grey: #eff2f7;
+  --dark: rgb(0, 0, 0);
 }
 
-body {
-  overflow: hidden;
+body{
+  margin: 0;
+  background:url(https://lh3.google.com/u/0/d/1oMsCz_EteLpvAawGsMHp85d2sim2GchC=w1920-h956-iv1);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-size: cover;
+  padding-bottom: 300px;
+  /*overflow:hidden; sin scroll*/
   font-family: 'Muli', sans-serif;
 }
 
+.inicio{
+  overflow:hidden;
+}
 h1, h2, h3, h4, h5, h6 {
   color: var(--primary);
   font-weight: 700;
+  text-decoration: none;
+}
+                                                        /*HEADER GENERAL*/
+header{
+  background-color: rgb(55, 59, 59);
+  background: linear-gradient(45deg,rgb(55,59,59),rgb(5, 5, 5));
 }
 
+header::after{
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.bgdegree{
+background-color: rgb(55, 59, 59);
+background: linear-gradient(45deg,rgb(72, 77, 77),rgb(5, 5, 5));
+
+}
+.auto-nav-header{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 50px;
+  display: inline;
+  color: white;
+  position: fixed;
+  left: 100px;
+  top: -5px;
+  /*width: 100%;*/
+}
+/*Automatas de la barra de navegacion*/
+.auto-nav-header:hover{
+  text-decoration: none;
+  color: white;
+}
+
+nav{
+  float: right;
+} 
+
+.containerer{
+  width: 70%;
+  margin:0 25em 0;
+}
+
+
+.negro{
+  color: rgb(26, 26, 26);
+}
+.blanco2{
+  color: whitesmoke;
+}
+
+nav ul{
+  margin:0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li{
+  display: inline-block;
+  margin-left: 75px;
+  padding-top: 30px;
+
+  position: relative;
+}
+
+nav a{
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(97, 97, 97);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 15px;
+}
+
+/*al pasar el puntero arriba del link cambiara de color*/
+nav a:hover{
+  color:white;
+  text-decoration: none;
+}
+
+nav a::before{
+  content: '';
+  display: block;
+  height: 5px;
+  width: 100%;
+  background-color:white;
+
+  position: absolute;
+  top: 0;
+  width: 0%;
+  
+  transition: all ease-in-out 100ms;
+}
+
+nav a:hover::before{
+  width: 100%;
+}
+
+                                                  /*  Parte central*/
+.centrar{
+  text-align: center;
+  padding-right: 10%;
+  padding-left: 10%;
+}
+
+
+                      /*boton empezar del home*/
+.btn2{
+  background-color: #303030;
+  color: white;
+  font-size: 20px;
+}
+
+.centrar-btn{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin: 0 45%;
+}
+
+
+                                              /*Contenido del jumbotron*/
+.jumbotron{
+  background: transparent;
+
+}
+
+/* centro el contenido del jumbotron*/
+.jumbotron-centrar{
+  margin: 0 30%;
+  align-content: center;
+  justify-content: center;
+}
+
+.jumbotron a:hover{
+  color:white;
+  text-decoration: none;
+}
+
+
+                                                      /*sidebar del index*/
 .text-muted {
-  color: var(--primary) !important;
-  opacity: .7;
+  color: var(--dark) !important;
+  opacity: .7; 
 }
 
 .bg-light {
-  background-color: var(--light) !important;
+background-color: var(--light-blue) !important;
 }
 
 .bg-light-blue {
-  background-color: var(--light-blue) !important;
+background-color: var(--light-blue) !important;
 }
 
 .shadow-sm {
-  box-shadow: 0 0 1.25rem rgba(11,37,75,.05);
+box-shadow: 0 0 1.25rem rgba(11,37,75,.05);
 }
 
 .shadow-hover {
-  transition: 1s ease-in-out;
+transition: 1s ease-in-out;
 }
 
 .shadow-hover:hover {
-  transition: 1s ease-in-out;
-  box-shadow: 0 .5rem 1rem rgba(11,37,75,.10)!important;
+transition: 1s ease-in-out;
+box-shadow: 0 .5rem 1rem rgba(11,37,75,.10)!important;
+}
+
+.bgt{
+  background: transparent;
+}
+
+.bgimg{
+  background: url(/img/90462.jpg);
+  background-size: cover ;
 }
 
 #sidebar-container {
@@ -51,79 +211,114 @@ h1, h2, h3, h4, h5, h6 {
   -moz-transition: margin .25s ease-out;
   -o-transition: margin .25s ease-out;
   transition: margin .25s ease-out;
+  position: fixed;
+  background-color: var(--light-blue) !important;
 }
 
 #sidebar-container .logo{
-  padding: 0.875rem 1.25rem;
+padding: 0.875rem 1.25rem;
 }
 
+/*sidebar de index*/
 #sidebar-container .menu {
-  width: 18rem;
+width: 18rem;
+text-align: center;
+font-size: 20px;
+padding-top:0%;
+
 }
 
 #content-wrapper.toggled #sidebar-container {
-  margin-left: 0;
+margin-left: 0;
 }
 
 .circle {
-  width: 50px;
-  height: 50px;
+width: 50px;
+height: 50px;
 }
 
 .badge {
-  padding: .5rem 1rem;
+padding: .5rem 1rem;
 }
 
 .bg-primary, .badge-primary {
-  background-color: rgba(0, 123, 255, .1) !important;
+background-color: rgba(0, 123, 255, .1) !important;
 }
 
 .avatar {
-  max-width: 35px;
+max-width: 35px;
 }
 
 .btn-primary {
-  background-color: rgba(0, 123, 255, .1) !important;
-  border: 0;
+background-color: rgba(0, 123, 255, .1) !important;
+border: 0;
 }
 
 .btn-primary:hover {
-  background-color: rgba(0, 123, 255, .2) !important;
+background-color: rgba(0, 123, 255, .2) !important;
 }
 
 .badge-secondary {
-  background-color: var(--grey);
-  color: var(--primary);
+background-color: var(--grey);
+color: var(--primary);
 }
 
 #content {
-  overflow-y: auto;
-  height: 100vh;
+overflow-y: auto;
+height: 100vh;
 }
 table {
-  border-collapse: separate;
-  border-spacing: 0 .5rem;
+border-collapse: separate;
+border-spacing: 0 1rem;
 }
 
 table thead th {
-  border: 0 !important;
+border: 0 !important;
 }
 
 table tbody tr {
-  background-color: var(--light);
+background-color: var(--light);
 }
 
 table tbody td {
-  border-top: 0 !important;
-  line-height: 1.2;
+border-top: 0 !important;
+line-height: 1.2;
 }
 
 
 @media (min-width: 768px) {
-  #sidebar-container {
-    margin-left: 0;
-  }
-  #content-wrapper.toggled #sidebar-container {
-    margin-left: -18rem;
-  }
+#sidebar-container {
+  margin-left: 0;
+}
+#content-wrapper.toggled #sidebar-container {
+  margin-left: -18rem;
+}
+}
+
+                                                        /*pagina about*/
+.containerabout{
+  text-align: center;
+}
+
+.containerabout h1{
+  font-size: 60px;
+}
+.menu_bar{
+  display: none;
+}
+
+.imgabout{
+width: 170px;
+height: 200px;
+padding: 1em;
+}
+
+.imgaboutphp{
+  height: 160px;
+  width: 190px;
+}
+
+.ordimg{
+  align-items: flex-end;
+  padding: 2em;
 }

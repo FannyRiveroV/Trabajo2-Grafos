@@ -14,7 +14,9 @@
           <div class="container mx-auto">
             <div class="form-group px-5 shadow p-3 mb-5 bg-white rounded">            
             <?php
-       
+
+            $tipo_auto = $_POST['tipo_auto'];
+            echo 'tipo auto :'.$tipo_auto.'<br>';
             class AFD
             {
               public $estados = array();
@@ -22,121 +24,553 @@
               public $est_fin = array();
               public $leng=array();
               public $trans=array();
+
+              function verAuto(){
+                $br= echo "}<br>";
+                echo 'QUINTUPLA  <br>';
+                echo "K = {";
+                for($a=0;$a<count($this->estados);$a++){
+                    echo $this->estados[$a].",";
+                }
+                $br;
+
+                echo "I = ".$this->est_ini."<br>";
+            
+                echo "F = {";
+                for($a=0;$a<count($this->est_fin);$a++){
+                  echo $this->est_fin[$a].",";
+                }
+                $br;
+
+                echo "σ = {";
+                for($a=0;$a<count($this->leng);$a++){
+                  echo $this->leng[$a].",";
+                } 
+        
+
+                echo 'δ = {';
+                for($a=0; $a < count($this->trans); $a++){
+                  echo '('.$this->trans[$a].'), ';
+                }
+        
+
+
+              }
             }   
-            $A=new AFD();
 
-            for($a=0;$a<$_POST['cant_est'];$a++)
+            class AFDchoristico
             {
-              $A->estados[$a]=$_POST['est_'.$a];
-            }
+              $noex='no existen';
+              $ep=$ep;
+              public $estados = array();
+              public $est_ini = array();
+              public $est_fin = array();
+              public $leng=array();
+              public $trans=array();
 
-            $A->est_ini=$_POST['est_ini'];
+              function verAuto(){
 
-            for($a=0;$a<$_POST['cant_fin'];$a++)
-            {
-                array_push($A->est_fin,$_POST['estfinal_'.$a]);
-            }
-
-            for($a=0;$a<$_POST['cant_leng'];$a++)
-            {
-                array_push($A->leng,$_POST['leng_'.$a]);
-            }
-
-            for($a=0;$a<$_POST['cant_trans'];$a++)
-            {
-                array_push($A->trans,$_POST['trans_'.$a]);
-            }
-
-
-
-       /*   function transformacion($A)
-          {*/
-              $C = new AFD();
-
-              $conj_ini=array();
-              array_push($conj_ini,$A->est_ini);
-
-
-              $MatrizConjunto = array();
-              for($a=0;$a<count($A->estados);$a++)
-              {
-                $MatrizConjunto[$a][0]=$A->estados[$a];
-              }
-
-              $aux=1;
-              for($a=0;$a<count($A->leng);$a++)
-              {
-                if($A->leng[$a]!='epsilon')
-                  $MatrizConjunto[0][$aux]=$A->leng[$a];
-                $aux++;
-              }
-             
-
-              $tran_separadas=array();
-
-
-              //conjunto de estados iniciales
-              for($a=0;$a<count($A->trans);$a++)
-              {
-                echo 'trancision '.$a.': '.$A->trans[$a].'<br>';
-                $tran_separadas=explode(',',$A->trans[$a]);
-
-                if($tran_separadas[0]==$A->est_ini)
+                echo '<br>QUINTUPLA Transformada <br>';
+                echo "K = {";
+                for($a=0;$a<count($this->estados);$a++)
                 {
-                  if($tran_separadas[1]=='epsilon')
+                  if(isset($this->estados[$a]))
                   {
-                    array_push($conj_ini,$tran_separadas[2]);
-                    echo 'T:'.$tran_separadas[2].'<br>';
-                    $A->est_ini=$tran_separadas[2];
+                    echo $this->estados[$a].",";
+                  }  
+                }
+                echo "} <br>";
+
+                echo "I = ";
+                for($a=0;$a<count($this->est_ini);$a++)
+                {
+                 echo $this->est_ini[$a];
+                }
+                echo " <br>";
+
+                echo "F = {";
+                  $array2=array_unique($this->est_fin);
+                  for($a=0;$a<count($this->est_fin);$a++)
+                  {
+                    if(isset($array2[$a]))
+                    {
+                      echo $array2[$a].",";
+                    }
+                  }
+        
+
+                echo "σ = {";
+                for($a=0;$a<count($this->leng);$a++){
+                  echo $this->leng[$a].",";
+                } 
+        
+
+                echo 'δ = {';
+                $array=array_unique($this->trans);
+                for($a=0; $a < count($this->trans); $a++){
+                  if(isset($array[$a])){
+                    echo '('.$array[$a].'), ';
+                  }
+                  
+                }
+        
+              }
+            }
+
+            if($tipo_auto=='1afnd')
+            {
+              $A=new AFD();
+             //recuperar las transiciiones
+              for($a=0;$a<$_POST['cant_est'];$a++)
+              {
+                $A->estados[$a]=$_POST['est_'.$a];
+              }
+
+              $A->est_ini=$_POST['est_ini'];
+
+              for($a=0;$a<$_POST['cant_fin'];$a++)
+              {
+                array_push($A->est_fin,$_POST['estfinal_'.$a]);
+              }
+
+              for($a=0;$a<$_POST['cant_leng'];$a++)
+              {
+                array_push($A->leng,$_POST['leng_'.$a]);
+              }
+
+              for($a=0;$a<$_POST['cant_trans'];$a++)
+              {
+                array_push($A->trans,$_POST['trans_'.$a]);
+             }
+              
+              $A->verAuto();
+              $C = new AFDchoristico();
+              //conjunto estados iniciales
+                $conj_ini=array();
+                array_push($conj_ini,$A->est_ini);
+                for($a=0;$a<count($A->trans);$a++)
+                {
+                  $arreglo=explode(',',$A->trans[$a]);
+                  if($arreglo[0]==$A->est_ini && $arreglo[1]==$ep)
+                  {
+                      array_push($conj_ini,$arreglo[2]);
+                      $A->est_ini=$arreglo[2];
+          
+                  }
+              }
+                for($a=0;$a<count($conj_ini);$a++){
+                  array_push($C->est_ini,$conj_ini[$a]);
+                }
+                echo'<br>';
+
+                array_push($C->estados,implode($conj_ini));
+
+                for($a=0;$a<cantLeng($A->leng);$a++)
+                {
+                  array_push($C->leng,$A->leng[$a]);
+              }
+
+              //matriz de las transiciones
+                $matriztrans= array ();
+                for($a=0;$a<count($A->estados);$a++)
+                {
+                  for($b=0;$b<cantLeng($A->leng);$b++)
+                  {
+                    $palabra2="";
+                    $palabra3="";
+                    $palabra=transde($A->estados[$a],$A->leng[$b],$A->trans);
+                    $palabra2=transde($A->estados[$a],$ep,$A->trans);
+                    $palabra3=transde($palabra2,$A->leng[$b],$A->trans);
+                    $palabra=$palabra.$palabra3;
+                    
+                    if(booltrans($palabra,$A->trans)=='true'){
+                      $palabra = $palabra.transde($palabra,$ep,$A->trans);
+                    }
+                    $matriztrans[$a][$b]= $palabra;
+                    echo $matriztrans[$a][$b];
+                    echo'_'.'_'.'_'.'_';
+                  }
+                  echo '<br>';
+              }
+
+
+              for($a=0;$a<count($C->estados);$a++)
+              {
+                if(isset($C->estados[$a]))
+                {
+                  $xd=existetrans($C->estados[$a],$C->leng,$C->trans);
+                  if($xd== $noex)
+                  {
+                    transformacion($A,$C,str_split($C->estados[$a],2),$matriztrans);
                   }
                 }
               }
 
+              //finales
 
-
-              for($a=0;$a<count($conj_ini);$a++)
-              { 
-                echo 'CONJUNTO_EST_INI '.$a.' : '.$conj_ini[$a].'<br>';
+              for($a=0;$a<count($C->estados);$a++)
+              {
+                if(isset($C->estados[$a])){
+                  $string = str_split($C->estados[$a],2);
+                  for($b=0;$b<count($string);$b++)
+                  {
+                    for($c=0;$c<count($A->est_fin);$c++)
+                    {
+                      if($string[$b] == $A->est_fin[$c])
+                      {
+                        array_push($C->est_fin,$C->estados[$a]);
+                      }
+                    }   
+                  }
+                }
               }
+              
+              $C->verAuto();
+
+            }
+            
+            if($tipo_auto=='2afnd')
+            {
+              $A=new AFD();
+             //recuperar el automata uwu
+              for($a=0;$a<$_POST['cant_est'];$a++)
+              {
+                $A->estados[$a]=$_POST['est_'.$a];
+              }
+
+              $A->est_ini=$_POST['est_ini'];
+
+              for($a=0;$a<$_POST['cant_fin'];$a++)
+              {
+                array_push($A->est_fin,$_POST['estfinal_'.$a]);
+              }
+
+              for($a=0;$a<$_POST['cant_leng'];$a++)
+              {
+                array_push($A->leng,$_POST['leng_'.$a]);
+              }
+
+              for($a=0;$a<$_POST['cant_trans'];$a++)
+              {
+                array_push($A->trans,$_POST['trans_'.$a]);
+             }
+              
+              $A->verAuto();
+
+              //conjunto estados iniciales
+                $conj_ini=array();
+                array_push($conj_ini,$A->est_ini);
+                for($a=0;$a<count($A->trans);$a++)
+                {
+                  $arreglo=explode(',',$A->trans[$a]);
+                  if($arreglo[0]==$A->est_ini && $arreglo[1]==$ep){
+                      array_push($conj_ini,$arreglo[2]);
+                      $A->est_ini=$arreglo[2];
+                  }
+              }
+
+              $C = new AFDchoristico();
+                for($a=0;$a<count($conj_ini);$a++){
+                  array_push($C->est_ini,$conj_ini[$a]);
+                }
+                echo'<br>';
+
+                array_push($C->estados,implode($conj_ini));
+
+                for($a=0;$a<cantLeng($A->leng);$a++)
+                {
+                  array_push($C->leng,$A->leng[$a]);
+              }
+
+              //matriz de las transiciones
+                $matriztrans= array ();
+                for($a=0;$a<count($A->estados);$a++)
+                {
+                  for($b=0;$b<cantLeng($A->leng);$b++)
+                  {
+                    $palabra2="";
+                    $palabra3="";
+                    $palabra=transde($A->estados[$a],$A->leng[$b],$A->trans);
+                    $palabra2=transde($A->estados[$a],$ep,$A->trans);
+                    $palabra3=transde($palabra2,$A->leng[$b],$A->trans);
+                    $palabra=$palabra.$palabra3;
+
+                    if(booltrans($palabra,$A->trans)=='true'){
+                      $palabra = $palabra.transde($palabra,$ep,$A->trans);
+                    }
+                    $matriztrans[$a][$b]= $palabra;
+                    echo $matriztrans[$a][$b];
+                    echo'_'.'_'.'_'.'_';
+                  }
+                  echo '<br>';
+              }
+
+
+              for($a=0;$a<count($C->estados);$a++)
+              {
+                $xd=existetrans($C->estados[$a],$C->leng,$C->trans);
+                if($xd== $noex)
+                {
+                  transformacion($A,$C,str_split($C->estados[$a],2),$matriztrans);
+                }
+              }
+              $C->verAuto();
 
               echo '<br>';
 
-
-
-              $cont=0;
-              for($a=0;$a<count($A->estados)+1;$a++)
-              {
-                for($b=0;$b<count($A->leng);$b++)
+              $B = new AFD();
+              //recuperar el automata uwu
+                for($a=0;$a<$_POST['cant_est2'];$a++)
                 {
-                  if ( isset($MatrizConjunto[$a][$b] ))
-                  {
-                    echo '['.$a.']['.$b.']: '.$MatrizConjunto[$a][$b].' ';
-                  }
-                  else{
+                  $B->estados[$a]=$_POST['est2_'.$a];
+                }
 
-                    if($a>0 and $b>0)
+                $B->est_ini=$_POST['est_ini2'];
+
+                for($a=0;$a<$_POST['cant_fin2'];$a++)
+                {
+                  array_push($B->est_fin,$_POST['estfinal2_'.$a]);
+                }
+
+                for($a=0;$a<$_POST['cant_leng2'];$a++)
+                {
+                  array_push($B->leng,$_POST['leng2_'.$a]);
+                }
+
+                for($a=0;$a<$_POST['cant_trans2'];$a++)
+                {
+                  array_push($B->trans,$_POST['trans2_'.$a]);
+              }  
+              $B->verAuto();
+              //conjunto estados iniciales
+                $conj_ini=array();
+                array_push($conj_ini,$B->est_ini);
+                for($a=0;$a<count($A->trans);$a++)
+                {
+                  $arreglo=explode(',',$B->trans[$a]);
+                  if($arreglo[0]==$B->est_ini && $arreglo[1]==$ep)
+                  {
+                      array_push($conj_ini,$arreglo[2]);
+                      $B->est_ini=$arreglo[2];
+                  }
+              }
+              $D = new AFDchoristico();
+                for($a=0;$a<count($conj_ini);$a++){
+                  array_push($D->est_ini,$conj_ini[$a]);
+                }
+                echo'<br>';
+
+                array_push($D->estados,implode($conj_ini));
+
+                for($a=0;$a<cantLeng($B->leng);$a++)
+                {
+                  array_push($D->leng,$B->leng[$a]);
+              }
+
+              //matriz de las transiciones
+                $matriztrans= array ();
+                for($a=0;$a<count($B->estados);$a++)
+                {
+                  for($b=0;$b<cantLeng($B->leng);$b++)
+                  {
+                    $palabra2="";
+                    $palabra3="";
+                    $palabra=transde($B->estados[$a],$B->leng[$b],$B->trans);
+                    $palabra2=transde($B->estados[$a],$ep,$B->trans);
+                    $palabra3=transde($palabra2,$B->leng[$b],$B->trans);
+                    $palabra=$palabra.$palabra3;
+
+                    if(booltrans($palabra,$B->trans)=='true'){
+                      $palabra = $palabra.transde($palabra,$ep,$B->trans);
+                    }
+                    $matriztrans[$a][$b]= $palabra;
+                    echo $matriztrans[$a][$b];
+                    echo'_'.'_'.'_'.'_';
+                  }
+                  echo '<br>';
+              }
+              for($a=0;$a<count($D->estados);$a++)
+              {
+                $xd=existetrans($D->estados[$a],$D->leng,$D->trans);
+                if($xd== $noex)
+                {
+                  transformacion($B,$D,str_split($D->estados[$a],2),$matriztrans);
+                }
+              }
+              $D->verAuto();
+
+
+            }
+
+
+            function transformacion($A,$C,$estadoxd,$matriztrans)
+            {
+        
+
+              //algoritmo principal?
+              for($b=0;$b<cantLeng($A->leng);$b++)
+              {
+
+                $flechitas=array();
+                for($a=0;$a<count($A->estados);$a++)
+                {
+                  for($c=0;$c<count($estadoxd);$c++)
+                  {
+                    if($estadoxd[$c]==$A->estados[$a])
                     {
-                      if($b!=2)
-                      {
-                        echo 'TA:'.$cont.' ['.$a.']['.$b.']'.": vacio xd ";
-                        $cont++;
-                      }
-                      else
-                      {
-                        echo 'TB:'.$cont.' ['.$a.']['.$b.']'.": vacio xd ";
-                        $cont++;
-                      }
-                  
+                      array_push($flechitas,$matriztrans[$a][$b]);
                     }
                   }
                 }
-                echo '<br>';
+
+
+                $estadito=array();
+                for($a=0;$a<count($flechitas);$a++)
+                {
+                  if(strlen($flechitas[$a])>2)
+                  {
+                    $separadas=str_split($flechitas[$a],2);
+                    for($c=0;$c<count($separadas);$c++)
+                    {
+                      array_push($estadito,$separadas[$c]);
+                    }
+                  }
+                  else{
+                    array_push($estadito,$flechitas[$a]);
+                  } 
+                }
+                $estadito = array_unique($estadito);
+
+                if(implode($estadito)==''){
+                  $estadito = array();
+                  array_push($estadito,'S');
+                  array_push($C->estados,implode($estadito));
+                  for($t=0;$t<cantLeng($A->leng);$t++)
+                  {
+                    array_push($C->trans,implode($estadito).','.$A->leng[$t].','.implode($estadito));
+                  }
+                }
+
+                else{
+                  array_push($C->estados,implode($estadito));
+                }
+
+                array_push($C->trans,implode($estadoxd).','.$A->leng[$b].','.implode($estadito));
+                
+              }
+              $C->estados=array_unique($C->estados);
+              return $C;
+            }
+
+            function cantLeng($lenguaje)
+            {
+              $contador=0;
+
+              for($a=0;$a<count($lenguaje);$a++)
+              {
+                if($lenguaje[$a]!=$ep)
+                {
+                  $contador++;
+                }
+
               }
 
-         // }
+              return $contador;
+            }
+
+            function transde($estado,$alf,$transxd)
+            {
+              
+              for($a=0;$a<count($transxd);$a++)
+              {
+                $string = explode(',',$transxd[$a]);
+                if($string[0]== $estado && $string[1]==$alf)
+                {  
+                  return $string[2];
+                }
+              }
+            }
+
+            function booltrans($estado,$transiciones)
+            {
+              for($a=0;$a<count($transiciones);$a++)
+              {
+                $array=explode(',',$transiciones[$a]);
+                if($array[0]==$estado && $array[1]==$ep){
+                  return 'true';
+                }
+              }
+            }
+            
+            function existetrans($estado, $lenguaje,$transiciones)
+            {
+              $cont=0;
+              for($a=0;$a<count($transiciones);$a++)
+              {
+                $string=explode(',',$transiciones[$a]);
+                if($string[0]==$estado){
+                  $cont++;
+                }
+              }
+
+              if($cont==cantLeng($lenguaje)){
+                return 'existen';
+              }
+              else{
+                return $noex; 
+              }
+            }
+
+            ?>
+
+            
+            
+            <form action="index.php?pagina=simplificar" method="POST">
+              <?php
+                 echo'<input type="hidden" name="tipo_auto" value="1afnd">
+                 <input type="hidden" name="est_ini" value="'.implode($C->est_ini).'">
+                 <input type="hidden" name="cant_est" value="'.count($C->estados).'">
+                 <input type="hidden" name="cant_fin" value="'.count($C->est_fin).'">
+                 <input type="hidden" name="cant_leng" value="'.count($C->leng).'">';
+
+                 $aux2=0;
+                 $valor='" value="';
+                 for($a=0;$a<count($C->estados);$a++)
+                 { 
+                   if(isset($C->estados[$a])){
+                    echo '<input type="hidden" name="est_'.$aux2.$valor.$C->estados[$a].'">';
+                    $aux2++;
+                   }
+                 }
+                 
+                 for($a=0;$a<count($C->est_fin);$a++)
+                 {
+                   echo '<input type="hidden" name="estfinal_'.$a.$valor.$C->est_fin[$a].'">';
+
+                 }
+                 for($a=0;$a<count($C->leng);$a++)
+                 {
+                   echo '<input type="hidden" name="leng_'.$a.$valor.$C->leng[$a].'">';
+                 }
+
+                 $aux=0;
+                 $array=array_unique($C->trans);
+                  for($a=0; $a < count($C->trans); $a++){
+                    if(isset($array[$a])){
+                      echo '<input type="hidden" name = "trans_'.$aux.$valor.$array[$a].'">';
+                      $aux++;
+                    }
+                  }
+                 echo '<input type="hidden" name="cant_trans" value="'.$aux.'">';
+            
+              ?>
 
 
-            ?>           
+
+            <input type="submit" value="Simplificar AFD transformado">
+            </form>
+
+            
             </div>
           </div>
         </div>

@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-2"></div>
         <div class="col-8"> <br> <br>
-          <h3  class="display-4  text-center">Autómatas</h3> <hr>
+          <h3  class="display-4  text-center">Ingreso de Autómatas</h3> <hr>
           <div class="container mx-auto">
             <div class="form-group px-5 shadow p-3 mb-5 bg-white rounded">
 
@@ -23,15 +23,18 @@
                   $tipo_auto=$_POST['tipo_auto'];
 
                   echo "Cantidad de estados del 1° Autómata: ".$cant_array."<br>
-                        Cantidad de estados del 2° Autómata: ".$cant_array2."<br><br>";
+                        Cantidad de estados del 2° Autómata: ".$cant_array2."<br>";
 
+                  echo 'Use el siguiente formato para nombrar a los autómatas: " qX "// X : número de estados, Ej: "q1,..,q12"<br><br>';
                     //se imprimen n formularios según $cant_array
                     echo "1° Autómata: ";
 
-                    if($tipo_auto=="2afnd")
+                    if($tipo_auto=="2afnd"){
                       echo 'AFND <br>';
-                    else
+                    }
+                    else{
                       echo 'AFD<br>';
+                    }
                     for($a=0;$a<$cant_array;$a++){
 
                         echo '<input type="text" size="25" name="estado'.$a.'" placeholder="Nombre estado '.$a.'" required>
@@ -44,14 +47,16 @@
                     
                     echo '<br>2° Autómata';
 
-                    if($tipo_auto=="2afd")
+                    if($tipo_auto=="2afd"){
                       echo ': AFD <br>';
-                    else
+                    }
+                    else{
                       echo ': AFND<br>';
+                    }  
                     for($a=0;$a<$cant_array2;$a++){
                         echo '<input type="text" size="25" name="estado_'.$a.'" placeholder="Nombre estado '.$a.'" required>
                               <input type="radio" name="inicial2" value="'.$a.'" required>Inicial
-                              <input type="checkbox" name="final2_'.$a.'" value="'.$a.'">FinaL
+                              <input type="checkbox" name="final2_'.$a.'" value="'.$a.'">Final
                               <br>';
                     }
                     echo '<br>';
@@ -74,7 +79,9 @@
                       <br>
                       σ: <input type="text" size="25" name="lenguaje_1" placeholder="1° Autómata" required><br><br>
 
-                      Separe con una coma "," cada caracter, o palabra que leerá el autómata:<br>
+                      Separe con una coma "," cada caracter, o palabra que leerá el autómata.<br>
+                      Si quiere leer un epsilon, pongalo al final Ej: "a,b, ... ,epsilon"
+
                       σ: <input type="text" size="25" name="lenguaje_2" placeholder="2° Autómata" required><br>
                       N° de transiciones por lenguaje: <input type="number" size="5" name="n_trans_afnd" min="0" required pattern="[0-9]{1,2}">
                       
@@ -88,12 +95,14 @@
                       echo'Ingrese el lenguaje con el cual trabajará el autómata:<br><br>
 
                       Separe con una coma "," cada caracter, o palabra que leerá el autómata:<br>
+                      Si quiere leer un epsilon, pongalo al final Ej: "a,b, ... ,epsilon"<br>
                       σ: <input type="text" size="25" name="lenguaje_1" placeholder="1° Autómata" required><br>
-                      N° de transiciones por estado: <input type="number" size="5" name="n_trans_afnd" min="0" required pattern="[0-9]{1,2}"><br><br>
+                      N° Máx de transiciones por c/lenguaje: <input type="number" size="5" name="n_trans_afnd" min="0" required pattern="[0-9]{1,2}"><br><br>
                       
                       Separe con una coma "," cada caracter, o palabra que leerá el autómata:<br>
+                      Si quiere leer un epsilon, pongalo al final Ej: "a,b, ... ,epsilon" <br>
                       σ: <input type="text" size="25" name="lenguaje_2" placeholder="2° Autómata" required><br>
-                      N° de transiciones por lenguaje: <input type="number" size="5" name="n_trans_afnd2" min="0" required pattern="[0-9]{1,2}"><br>';
+                      N° Máx de transiciones por c/lenguaje: <input type="number" size="5" name="n_trans_afnd2" min="0" required pattern="[0-9]{1,2}"><br>';
                     }                       
                         
 
@@ -101,7 +110,7 @@
 
 
 
-                <input type="submit" value="Next">
+                <input type="submit" value="Avanzar">
                 <input type="hidden" name='cantida_estados_1' value="<?php echo $cant_array?>">
                 <input type="hidden" name='cantida_estados_2' value="<?php echo $cant_array2?>">
                 <input type="hidden" name='tipo_auto' value="<?php echo $tipo_auto?>">

@@ -55,8 +55,12 @@
                   }
                     
                 }
-             
-                
+                $Kaux=$K1;
+                array_unshift($Kaux,"x");
+                $Kaux2=$K2;
+                array_unshift($Kaux2,"x");
+
+
                 $pal=$_POST['lenguaje_1'];
                 $pal2=$_POST['lenguaje_2'];
                 
@@ -65,28 +69,31 @@
 
                   $Numero_transiciones_1=strlen($pal);
                   $Numero_transiciones_2=strlen($pal2);
-
-
-                  echo 'Transiciones del 1° Autómata'.'<br>
-                      Q-------------> σ ------>δ(Q,σ) ///// Ingrese "qX"; X:N° de estado al que se dirige<br><br>';
+                  $flecha='------> δ: ';
+                  $flecha2=' -----> ';
+                  $txt='<br> 
+                  Q-------------> σ ------>δ(Q,σ) <br><br>';
+                  $trans='Transiciones del 1° Autómata';
+                  echo $trans.$txt;
                   $cont=0;
                   for($a=0; $a < $cant_array; $a++){
                       for($b=0; $b <$Numero_transiciones_1; $b++){
-          
-                          echo $K1[$a].'  = q'.$a.'-----> '.$pal[$b].' '.'------> δ: '.'<input type="text" size="2" name="t_'.$cont.'" required><br>';
+                          $nombre='t_'.$cont;
+                          echo $K1[$a].$flecha2.$pal[$b].' '.$flecha;
+                          opciones($K1,$nombre);
                           $cont++;
                       }
                       
                   }
 
-                  echo 'Transiciones del 2° Autómata'.'<br>
-                      Q-------------> σ ------>δ(Q,σ) <br><br>';
+                  echo 'Transiciones del 2° Autómata'.$txt;
                   $cont2=0;
                   for($a=0; $a < $cant_array2; $a++){
                       for($b=0; $b <$Numero_transiciones_2; $b++){
-          
-                          echo $K2[$a].'  = q'.$a.'-----> '.$pal2[$b].' '.'------> δ: '.'<input type="text" size="2" name="t2_'.$cont2.'" required><br>';
-                          $cont2++;
+                        $nombre2='t2_'.$cont2;
+                        echo $K2[$a].$flecha2.$pal2[$b].' '.$flecha;
+                        opciones($K2,$nombre2);
+                        $cont2++;
                       }
                       
                   }
@@ -96,14 +103,14 @@
                 if($tipo_auto == "1afnd")
                 {
                   $Numero_transiciones_1=strlen($pal);
-                  echo 'Transiciones del 1° Autómata'.'<br>
-                      Q-------------> σ ------>δ(Q,σ) ///// Ingrese "qX"; X:N° de estado al que se dirige<br><br>';
+                  echo $trans.$txt;
                   $cont=0;
                   for($a=0; $a < $cant_array; $a++){
                       for($b=0; $b <$Numero_transiciones_1; $b++){
-          
-                          echo $K1[$a].'  = q'.$a.'-----> '.$pal[$b].' '.'------> δ: '.'<input type="text" size="2" name="t_'.$cont.'" required><br>';
-                          $cont++;
+                        $nombre='t_'.$cont;
+                        echo $K1[$a].$flecha2.$pal[$b].' '.$flecha;
+                        opciones($K1,$nombre);
+                        $cont++;
                       }
                   }
 
@@ -113,14 +120,17 @@
 
                   
                   $leng_afnd=explode(",",$pal2);
-                  echo '<br>Transiciones del 2° Autómata'.'<br>
-                      Q-------------> σ ------>δ(Q,σ) <br>
-                      Si no existe la trancision, escriba un x o X<br><br>';
+                  $textolargo='<br>
+                  Q-------------> σ ------>δ(Q,σ) <br>
+                  Si no existe la trancision, escriba un x o X<br><br>';
+                  echo '<br>Transiciones del 2° Autómata'.$textolargo;
                   $cont2=0;
                   for($a=0; $a < $cant_array2; $a++){
                       for($b=0; $b <count($leng_afnd); $b++){
                         for($c=0;$c<$Num_trans;$c++){
-                          echo $K2[$a].'  = q'.$a.'-----> '.$leng_afnd[$b].' '.'------> δ: '.'<input type="text" size="2" name="t2_'.$cont2.'" required><br>';
+                          $nombre2='t2_'.$cont2;
+                          echo $K2[$a].$flecha2.$leng_afnd[$b].' '.$flecha;
+                          opciones($Kaux2,$nombre2);
                           $cont2++;
                         }
                       }
@@ -138,14 +148,14 @@
                   $Num_trans=$_POST['n_trans_afnd'];
                   echo '<input type="hidden" name="n_transxd" value="'.$Num_trans.'"';
                   
-                  echo 'Transiciones del 1° Autómata'.'<br>
-                      Q-------------> σ ------>δ(Q,σ) <br>
-                      Si no existe la trancision, escriba un x o X<br><br>';
+                  echo $trans.$textolargo;
                   $cont=0;
                   for($a=0; $a < $cant_array; $a++){
                       for($b=0; $b <count($leng_afnd); $b++){
                         for($c=0;$c<$Num_trans;$c++){
-                          echo $K2[$a].'  = q'.$a.'-----> '.$leng_afnd[$b].' '.'------> δ: '.'<input type="text" size="2" name="t_'.$cont.'" required><br>';
+                          $nombre='t_'.$cont;
+                          echo $K1[$a].$flecha2.$leng_afnd[$b].' '.$flecha;
+                          opciones($Kaux,$nombre);
                           $cont++;
                         }
                       }
@@ -156,14 +166,14 @@
                   $Num_trans2=$_POST['n_trans_afnd2'];
                   echo '<input type="hidden" name="n_transxd2" value="'.$Num_trans2.'"';
 
-                  echo 'Transiciones del 2° Autómata'.'<br>
-                      Q-------------> σ ------>δ(Q,σ) <br>
-                      Si no existe la trancision, escriba un x o X<br><br>';
+                  echo 'Transiciones del 2° Autómata'.$textolargo;
                   $cont2=0;
                   for($a=0; $a < $cant_array2; $a++){
                       for($b=0; $b <count($leng_afnd2); $b++){
                         for($c=0;$c<$Num_trans2;$c++){
-                          echo $K2[$a].'  = q'.$a.'-----> '.$leng_afnd2[$b].' '.'------> δ: '.'<input type="text" size="2" name="t2_'.$cont2.'" required><br>';
+                          $nombre2='t2_'.$cont2;
+                          echo $K2[$a].$flecha2.$leng_afnd2[$b].' '.$flecha;
+                          opciones($Kaux2,$nombre2);
                           $cont2++;
                         }
                       }
@@ -171,29 +181,48 @@
                   }
 
                 }
+                
 
-              ?>
+                function opciones($K,$nombre){?>
+                  <select type="text" name="<?php echo $nombre?>">
+                    <?php
+                    foreach($K as $opciones){
+                    ?>
+                      <option value="<?php echo $opciones?>"><?php echo $opciones?></option>
+                     
+                    <?php
+                    }
+                    ?>
+                    
+                  </select>
+                <?php
+                  echo "</br>";
+                }
+                ?>
+
+
               
 
 
                <?php
+               $valor='" value="';
                 for($a=0;$a<$cant_array;$a++)
                 {
-                  echo '<input type="hidden" name="estado'.$a.'" value="'.$K1[$a].'">';
+                  echo '<input type="hidden" name="estado'.$a.$valor.$K1[$a].'">';
                 }
                 for($a=0;$a<$cant_array2;$a++)
                 {
-                  echo '<input type="hidden" name="estado_'.$a.'" value="'.$K2[$a].'" >';
+                  echo '<input type="hidden" name="estado_'.$a.$valor.$K2[$a].'" >';
                 }
 
                 for($a=0;$a<count($F1);$a++)
                 {
-                  echo '<input type="hidden" name="fin_'.$a.'" value="'.$F1[$a].'" >';
+                  echo '<input type="hidden" name="fin_'.$a.$valor.$F1[$a].'" >';
                 }
 
                 for($a=0;$a<count($F2);$a++)
                 {
-                  echo '<input type="hidden" name="fin2_'.$a.'" value="'.$F2[$a].'" >';
+                  echo '<input type="hidden" name="fin2_'.$a.$valor.$F2[$a].'" >';
                 }
                
               ?> 
@@ -223,7 +252,7 @@
                   echo'<input type="hidden" name="cant_leng" value="'.count($leng_afnd).'" >';
                   for($a=0;$a<count($leng_afnd);$a++)
                   {
-                    echo '<input type="hidden" name="text'.$a.'" value="'.$leng_afnd[$a].'" >';
+                    echo '<input type="hidden" name="text'.$a.$valor.$leng_afnd[$a].'" >';
                   }
 
                 }
@@ -235,11 +264,12 @@
 
 
                   for($a=0;$a<count($leng_afnd);$a++){
-                    echo '<input type="hidden" name="lenguaj_1'.$a.'" value="'.$leng_afnd[$a].'" >';
+                    echo '<input type="hidden" name="lenguaj_1'.$a.$valor.$leng_afnd[$a].'" >';
                   }
 
-                  for($a=0;$a<count($leng_afnd2);$a++)
-                  echo '<input type="hidden" name="lenguaj_2'.$a.'" value="'.$leng_afnd2[$a].'" >';
+                  for($a=0;$a<count($leng_afnd2);$a++){
+                    echo '<input type="hidden" name="lenguaj_2'.$a.$valor.$leng_afnd2[$a].'" >';
+                  }
                 }
 
               ?>
