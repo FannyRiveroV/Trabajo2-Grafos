@@ -12,12 +12,12 @@
         </div>
         <div class="container">
             <h2>Desarrolladores:</h2>
-            <li>Esteban Rojas</li>
-            <li>Fanny Riveros</li>
-            <li>Rodrigo Alvarez</li>
-            <li>Axel Jerez</li>
-            <li>Carlos </li>
-            <li>Nuevo</li>
+            <ul>Esteban Rojas</ul>
+            <ul>Fanny Rivero</ul>
+            <ul>Rodrigo Alvarez</ul>
+            <ul>Axel Jerez</ul>
+            <ul>Carlos </ul>
+            <ul>Nuevo</ul>
         </div>
        
         

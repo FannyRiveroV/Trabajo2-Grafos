@@ -26,13 +26,13 @@
               public $trans=array();
 
               function verAuto(){
-
+                $br= echo "}<br>";
                 echo 'QUINTUPLA  <br>';
                 echo "K = {";
                 for($a=0;$a<count($this->estados);$a++){
                     echo $this->estados[$a].",";
                 }
-                echo "} <br>";
+                $br;
 
                 echo "I = ".$this->est_ini."<br>";
             
@@ -40,20 +40,19 @@
                 for($a=0;$a<count($this->est_fin);$a++){
                   echo $this->est_fin[$a].",";
                 }
-                echo "}<br>";
+                $br;
 
                 echo "σ = {";
                 for($a=0;$a<count($this->leng);$a++){
                   echo $this->leng[$a].",";
                 } 
-                echo "}<br>";
+        
 
                 echo 'δ = {';
-                $aux=0;
                 for($a=0; $a < count($this->trans); $a++){
                   echo '('.$this->trans[$a].'), ';
                 }
-                echo "}<br>";
+        
 
 
               }
@@ -61,6 +60,8 @@
 
             class AFDchoristico
             {
+              $noex='no existen';
+              $ep=$ep;
               public $estados = array();
               public $est_ini = array();
               public $est_fin = array();
@@ -74,7 +75,9 @@
                 for($a=0;$a<count($this->estados);$a++)
                 {
                   if(isset($this->estados[$a]))
+                  {
                     echo $this->estados[$a].",";
+                  }  
                 }
                 echo "} <br>";
 
@@ -94,13 +97,13 @@
                       echo $array2[$a].",";
                     }
                   }
-                echo "}<br>";
+        
 
                 echo "σ = {";
                 for($a=0;$a<count($this->leng);$a++){
                   echo $this->leng[$a].",";
                 } 
-                echo "}<br>";
+        
 
                 echo 'δ = {';
                 $array=array_unique($this->trans);
@@ -110,7 +113,7 @@
                   }
                   
                 }
-                echo "}<br>";
+        
               }
             }
 
@@ -141,11 +144,6 @@
              }
               
               $A->verAuto();
-
-              //echo '<br>cantidad de lenguaje: '.cantLeng($A->leng);
-              //echo '<br>cantidad de estados: '.count($A->estados);
-
-
               $C = new AFDchoristico();
               //conjunto estados iniciales
                 $conj_ini=array();
@@ -153,17 +151,14 @@
                 for($a=0;$a<count($A->trans);$a++)
                 {
                   $arreglo=explode(',',$A->trans[$a]);
-                  if($arreglo[0]==$A->est_ini){
-                    if($arreglo[1]=='epsilon'){
+                  if($arreglo[0]==$A->est_ini && $arreglo[1]==$ep)
+                  {
                       array_push($conj_ini,$arreglo[2]);
                       $A->est_ini=$arreglo[2];
-                    }
+          
                   }
               }
-              
-              //echo '<br>conjunto inicial: ';
                 for($a=0;$a<count($conj_ini);$a++){
-                  //echo $conj_ini[$a];
                   array_push($C->est_ini,$conj_ini[$a]);
                 }
                 echo'<br>';
@@ -184,12 +179,12 @@
                     $palabra2="";
                     $palabra3="";
                     $palabra=transde($A->estados[$a],$A->leng[$b],$A->trans);
-                    $palabra2=transde($A->estados[$a],'epsilon',$A->trans);
+                    $palabra2=transde($A->estados[$a],$ep,$A->trans);
                     $palabra3=transde($palabra2,$A->leng[$b],$A->trans);
                     $palabra=$palabra.$palabra3;
                     
                     if(booltrans($palabra,$A->trans)=='true'){
-                      $palabra = $palabra.transde($palabra,'epsilon',$A->trans);
+                      $palabra = $palabra.transde($palabra,$ep,$A->trans);
                     }
                     $matriztrans[$a][$b]= $palabra;
                     echo $matriztrans[$a][$b];
@@ -199,14 +194,12 @@
               }
 
 
-
-              //$C->verAuto();
               for($a=0;$a<count($C->estados);$a++)
               {
                 if(isset($C->estados[$a]))
                 {
                   $xd=existetrans($C->estados[$a],$C->leng,$C->trans);
-                  if($xd== 'no existen')
+                  if($xd== $noex)
                   {
                     transformacion($A,$C,str_split($C->estados[$a],2),$matriztrans);
                   }
@@ -218,14 +211,15 @@
               for($a=0;$a<count($C->estados);$a++)
               {
                 if(isset($C->estados[$a])){
-                  //echo '<br> estado '.$a.': '.$C->estados[$a];
                   $string = str_split($C->estados[$a],2);
                   for($b=0;$b<count($string);$b++)
                   {
                     for($c=0;$c<count($A->est_fin);$c++)
-                    if($string[$b] == $A->est_fin[$c])
                     {
-                      array_push($C->est_fin,$C->estados[$a]);
+                      if($string[$b] == $A->est_fin[$c])
+                      {
+                        array_push($C->est_fin,$C->estados[$a]);
+                      }
                     }   
                   }
                 }
@@ -263,27 +257,20 @@
               
               $A->verAuto();
 
-              //echo '<br>cantidad de lenguaje: '.cantLeng($A->leng);
-              //echo '<br>cantidad de estados: '.count($A->estados);
-
               //conjunto estados iniciales
                 $conj_ini=array();
                 array_push($conj_ini,$A->est_ini);
                 for($a=0;$a<count($A->trans);$a++)
                 {
                   $arreglo=explode(',',$A->trans[$a]);
-                  if($arreglo[0]==$A->est_ini){
-                    if($arreglo[1]=='epsilon'){
+                  if($arreglo[0]==$A->est_ini && $arreglo[1]==$ep){
                       array_push($conj_ini,$arreglo[2]);
                       $A->est_ini=$arreglo[2];
-                    }
                   }
               }
 
               $C = new AFDchoristico();
-              //echo '<br>conjunto inicial: ';
                 for($a=0;$a<count($conj_ini);$a++){
-                  //echo $conj_ini[$a];
                   array_push($C->est_ini,$conj_ini[$a]);
                 }
                 echo'<br>';
@@ -304,12 +291,12 @@
                     $palabra2="";
                     $palabra3="";
                     $palabra=transde($A->estados[$a],$A->leng[$b],$A->trans);
-                    $palabra2=transde($A->estados[$a],'epsilon',$A->trans);
+                    $palabra2=transde($A->estados[$a],$ep,$A->trans);
                     $palabra3=transde($palabra2,$A->leng[$b],$A->trans);
                     $palabra=$palabra.$palabra3;
 
                     if(booltrans($palabra,$A->trans)=='true'){
-                      $palabra = $palabra.transde($palabra,'epsilon',$A->trans);
+                      $palabra = $palabra.transde($palabra,$ep,$A->trans);
                     }
                     $matriztrans[$a][$b]= $palabra;
                     echo $matriztrans[$a][$b];
@@ -319,13 +306,10 @@
               }
 
 
-
-
-              //$C->verAuto();
               for($a=0;$a<count($C->estados);$a++)
               {
                 $xd=existetrans($C->estados[$a],$C->leng,$C->trans);
-                if($xd== 'no existen')
+                if($xd== $noex)
                 {
                   transformacion($A,$C,str_split($C->estados[$a],2),$matriztrans);
                 }
@@ -364,18 +348,14 @@
                 for($a=0;$a<count($A->trans);$a++)
                 {
                   $arreglo=explode(',',$B->trans[$a]);
-                  if($arreglo[0]==$B->est_ini){
-                    if($arreglo[1]=='epsilon'){
+                  if($arreglo[0]==$B->est_ini && $arreglo[1]==$ep)
+                  {
                       array_push($conj_ini,$arreglo[2]);
                       $B->est_ini=$arreglo[2];
-                    }
                   }
               }
               $D = new AFDchoristico();
-
-              //echo '<br>conjunto inicial: ';
                 for($a=0;$a<count($conj_ini);$a++){
-                  //echo $conj_ini[$a];
                   array_push($D->est_ini,$conj_ini[$a]);
                 }
                 echo'<br>';
@@ -396,12 +376,12 @@
                     $palabra2="";
                     $palabra3="";
                     $palabra=transde($B->estados[$a],$B->leng[$b],$B->trans);
-                    $palabra2=transde($B->estados[$a],'epsilon',$B->trans);
+                    $palabra2=transde($B->estados[$a],$ep,$B->trans);
                     $palabra3=transde($palabra2,$B->leng[$b],$B->trans);
                     $palabra=$palabra.$palabra3;
 
                     if(booltrans($palabra,$B->trans)=='true'){
-                      $palabra = $palabra.transde($palabra,'epsilon',$B->trans);
+                      $palabra = $palabra.transde($palabra,$ep,$B->trans);
                     }
                     $matriztrans[$a][$b]= $palabra;
                     echo $matriztrans[$a][$b];
@@ -409,12 +389,10 @@
                   }
                   echo '<br>';
               }
-
-              //$D->verAuto();
               for($a=0;$a<count($D->estados);$a++)
               {
                 $xd=existetrans($D->estados[$a],$D->leng,$D->trans);
-                if($xd== 'no existen')
+                if($xd== $noex)
                 {
                   transformacion($B,$D,str_split($D->estados[$a],2),$matriztrans);
                 }
@@ -427,9 +405,7 @@
 
             function transformacion($A,$C,$estadoxd,$matriztrans)
             {
-              
-              //echo "<br>num de estados en este conjunto: ".count($estadoxd);
-              //echo '<br>';
+        
 
               //algoritmo principal?
               for($b=0;$b<cantLeng($A->leng);$b++)
@@ -456,27 +432,16 @@
                     $separadas=str_split($flechitas[$a],2);
                     for($c=0;$c<count($separadas);$c++)
                     {
-                      //echo '<br>conj de estados: '.$separadas[$c];
                       array_push($estadito,$separadas[$c]);
                     }
                   }
                   else{
-                    //echo '<br>transicion'.' de '.$A->leng[$b].': '.$flechitas[$a];
                     array_push($estadito,$flechitas[$a]);
                   } 
                 }
-                /*echo "<br>estado cuando se lee ".$A->leng[$b].': ';
-                for($a=0;$a<count($estadito);$a++)
-                {
-                  echo $estadito[$a];
-                }*/
-
-                //estadito finalsito uwu
-                //echo "<br>estado final cuando se lee ".$A->leng[$b].': ';
                 $estadito = array_unique($estadito);
 
                 if(implode($estadito)==''){
-                  //echo 'SUMIDERO' ;
                   $estadito = array();
                   array_push($estadito,'S');
                   array_push($C->estados,implode($estadito));
@@ -487,11 +452,6 @@
                 }
 
                 else{
-
-                  /*for($a=0;$a<count($estadito);$a++)
-                  {
-                    echo $estadito[$a];
-                  }*/
                   array_push($C->estados,implode($estadito));
                 }
 
@@ -508,7 +468,7 @@
 
               for($a=0;$a<count($lenguaje);$a++)
               {
-                if($lenguaje[$a]!='epsilon')
+                if($lenguaje[$a]!=$ep)
                 {
                   $contador++;
                 }
@@ -524,8 +484,10 @@
               for($a=0;$a<count($transxd);$a++)
               {
                 $string = explode(',',$transxd[$a]);
-                if($string[0]== $estado and $string[1]==$alf)
+                if($string[0]== $estado && $string[1]==$alf)
+                {  
                   return $string[2];
+                }
               }
             }
 
@@ -534,8 +496,9 @@
               for($a=0;$a<count($transiciones);$a++)
               {
                 $array=explode(',',$transiciones[$a]);
-                if($array[0]==$estado and $array[1]=='epsilon')
+                if($array[0]==$estado && $array[1]==$ep){
                   return 'true';
+                }
               }
             }
             
@@ -545,15 +508,16 @@
               for($a=0;$a<count($transiciones);$a++)
               {
                 $string=explode(',',$transiciones[$a]);
-                if($string[0]==$estado)
+                if($string[0]==$estado){
                   $cont++;
+                }
               }
 
               if($cont==cantLeng($lenguaje)){
                 return 'existen';
               }
               else{
-                return 'no existen'; 
+                return $noex; 
               }
             }
 
@@ -570,29 +534,30 @@
                  <input type="hidden" name="cant_leng" value="'.count($C->leng).'">';
 
                  $aux2=0;
+                 $valor='" value="';
                  for($a=0;$a<count($C->estados);$a++)
                  { 
                    if(isset($C->estados[$a])){
-                    echo '<input type="hidden" name="est_'.$aux2.'" value="'.$C->estados[$a].'">';
+                    echo '<input type="hidden" name="est_'.$aux2.$valor.$C->estados[$a].'">';
                     $aux2++;
                    }
                  }
                  
                  for($a=0;$a<count($C->est_fin);$a++)
                  {
-                   echo '<input type="hidden" name="estfinal_'.$a.'" value="'.$C->est_fin[$a].'">';
+                   echo '<input type="hidden" name="estfinal_'.$a.$valor.$C->est_fin[$a].'">';
 
                  }
                  for($a=0;$a<count($C->leng);$a++)
                  {
-                   echo '<input type="hidden" name="leng_'.$a.'" value="'.$C->leng[$a].'">';
+                   echo '<input type="hidden" name="leng_'.$a.$valor.$C->leng[$a].'">';
                  }
 
                  $aux=0;
                  $array=array_unique($C->trans);
                   for($a=0; $a < count($C->trans); $a++){
                     if(isset($array[$a])){
-                      echo '<input type="hidden" name = "trans_'.$aux.'" value="'.$array[$a].'">';
+                      echo '<input type="hidden" name = "trans_'.$aux.$valor.$array[$a].'">';
                       $aux++;
                     }
                   }

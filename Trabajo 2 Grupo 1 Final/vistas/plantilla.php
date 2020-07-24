@@ -34,15 +34,9 @@
     </div> 
     <div class="menu list-group-flush"> 
       <a href="index.php?pagina=automatas" class="list-group-item list-group-item-action text-muted  p-3 border-0">
-        <i class="material-icons">add_circle</i>  Ingresar Automatas </a>
-      <!-- <a href="#" class="list-group-item list-group-item-action text-muted  p-3 border-0">
-        <i class="material-icons">adjust</i>  AFD Equivalente </a>
-      <a href="#" class="list-group-item list-group-item-action text-muted  p-3 border-0">
-      <i class="material-icons">blur_circular</i>  Union Automatas </a>
-    <a href="index.php?pagina=simplificar" class="list-group-item list-group-item-action text-muted  p-3 border-0">
-        <i class="material-icons">border_style</i> Simplificación </a>-->
+        <em class="material-icons">add_circle</em>  Ingresar Automatas </a>
       <a href="index.php?pagina=nosotros" class="list-group-item list-group-item-action text-muted  p-3 border-0">
-        <i class="material-icons"> account_circle </i> Nosotros </a>
+        <em class="material-icons"> account_circle </em> Nosotros </a>
       <a href="index.php?pagina=inicio" class="list-group-item list-group-item-action text-muted  p-3 border-0">Volver al Inicio</a>  
     </div>
   </div>

@@ -16,8 +16,6 @@
             <?php
             
             $tipo_auto=$_POST['tipo_auto'];
-            //echo "TIPO AUTO: ".$tipo_auto."<br>";
-
             // ESTO ES SOLO PARA AFD
             class AFD{
               public $estados = array();
@@ -28,20 +26,22 @@
               
               function verAuto()
               {
+                $br= echo "}<br>";
                 echo "QUINTUPLA <br><br>";
                 // imprime el automata 
                   echo "K = {";
                       for($a=0;$a<count($this->estados);$a++){
                           echo $this->estados[$a].",";
                       }
-                  echo "}<br>";
+                  $br;
                   
                   echo "I = ".$this->est_ini."<br>";
   
                   echo "F = {";
                     for($a=0;$a<count($this->est_fin);$a++){
-                      if(isset($this->est_fin[$a]))
+                      if(isset($this->est_fin[$a])){
                         echo $this->est_fin[$a].",";
+                      }
                     }
                   echo "}";
                   echo "<br>";
@@ -51,7 +51,7 @@
                   {
                       echo $this->leng[$a].",";
                   }
-                  echo "}<br>";
+                  $br;
   
                   echo 'δ = {';
                   $aux=0;
@@ -109,10 +109,6 @@
               for($a=0;$a<$cant_tran2;$a++){
                 $B->trans[$a]=$_POST['tran2_'.$a];
               }
-
-
-              //$A->verAuto();
-              //$B->verAuto();
               complemento($A);
               complemento($B);
               echo "COMPLEMENTOS: <br><br>";
@@ -151,7 +147,7 @@
                     for($a=0;$a<count($A->estados);$a++){
                         echo $A->estados[$a].",";
                     }
-                echo "}<br>";
+                $br
                 
                 echo "I1 = ".$A->est_ini."<br>";
 
@@ -167,7 +163,7 @@
                 {
                     echo $A->leng[$a].",";
                 }
-                echo "}<br>";
+                $br
 
                 echo 'δ_1: {';
                 $aux=0;
@@ -222,6 +218,7 @@
             
               if($tipo_auto == "2afd")
               {
+                $value='" value="';
                 echo'<input type="hidden" name="tipo_auto" value="'.$tipo_auto.'">
                   <input type="hidden" name="est_ini" value="'.$A->est_ini.'">
                   <input type="hidden" name="est_ini2" value="'.$B->est_ini.'">
@@ -237,34 +234,34 @@
 
                   for($a=0;$a<count($A->estados);$a++)
                   {
-                    echo '<input type="hidden" name="est_'.$a.'" value="'.$A->estados[$a].'">';
+                    echo '<input type="hidden" name="est_'.$a.$value.$A->estados[$a].'">';
                   }
                   for($a=0;$a<count($B->estados);$a++)
                   {
-                    echo '<input type="hidden" name="est2_'.$a.'" value="'.$B->estados[$a].'">';
+                    echo '<input type="hidden" name="est2_'.$a.$value.$B->estados[$a].'">';
                   }
                     
                   for($a=0;$a<count($A->est_fin);$a++)
                   {
                    
-                    echo '<input type="hidden" name="estfinal_'.$a.'" value="'.$A->est_fin[$a].'">';
+                    echo '<input type="hidden" name="estfinal_'.$a.$value.$A->est_fin[$a].'">';
 
                   }
                   for($a=0;$a<count($B->est_fin);$a++)
                   {
                     
-                    echo '<input type="hidden" name="estfinal2_'.$a.'" value="'.$B->est_fin[$a].'">';
+                    echo '<input type="hidden" name="estfinal2_'.$a.$value.$B->est_fin[$a].'">';
 
                   }
 
                   for($a=0;$a<count($A->leng);$a++)
                   {
-                    echo '<input type="hidden" name="leng_'.$a.'" value="'.$A->leng[$a].'">';
+                    echo '<input type="hidden" name="leng_'.$a.$value.$A->leng[$a].'">';
                   }
 
                   for($a=0;$a<count($B->leng);$a++)
                   {
-                    echo '<input type="hidden" name="leng2_'.$a.'" value="'.$B->leng[$a].'">';
+                    echo '<input type="hidden" name="leng2_'.$a.$value.$B->leng[$a].'">';
                   }
 
               
@@ -272,7 +269,7 @@
                   $aux=0;
                   for($a=0; $a < count($A->estados); $a++){
                     for($b=0; $b <count($A->leng); $b++){
-                      echo '<input type="hidden" name="trans_'.$aux.'" value="'.$A->estados[$a].','.$A->leng[$b].','.$A->trans[$aux].'">';
+                      echo '<input type="hidden" name="trans_'.$aux.$value.$A->estados[$a].','.$A->leng[$b].','.$A->trans[$aux].'">';
                       $aux++;
                     }
                   }
@@ -284,7 +281,7 @@
                   {
                     for($b=0; $b <count($B->leng); $b++)
                     {
-                      echo '<input type="hidden" name="trans2_'.$aux.'" value="'.$B->estados[$a].','.$B->leng[$b].','.$B->trans[$aux].'">';
+                      echo '<input type="hidden" name="trans2_'.$aux.$value.$B->estados[$a].','.$B->leng[$b].','.$B->trans[$aux].'">';
                       $aux++;
                     }
                   }
@@ -300,23 +297,23 @@
 
                   for($a=0;$a<count($A->estados);$a++)
                   {
-                    echo '<input type="hidden" name="est_'.$a.'" value="'.$A->estados[$a].'">';
+                    echo '<input type="hidden" name="est_'.$a.$value.$A->estados[$a].'">';
                   }
                   
                   for($a=0;$a<count($A->est_fin);$a++)
                   {
-                    echo '<input type="hidden" name="estfinal_'.$a.'" value="'.$A->est_fin[$a].'">';
+                    echo '<input type="hidden" name="estfinal_'.$a.$value.$A->est_fin[$a].'">';
 
                   }
                   for($a=0;$a<count($A->leng);$a++)
                   {
-                    echo '<input type="hidden" name="leng_'.$a.'" value="'.$A->leng[$a].'">';
+                    echo '<input type="hidden" name="leng_'.$a.$value.$A->leng[$a].'">';
                   }
 
                   $aux=0;
                   for($a=0; $a < count($A->estados); $a++){
                     for($b=0; $b <count($A->leng); $b++){
-                      echo '<input type="hidden" name="trans_'.$aux.'" value="'.$A->estados[$a].','.$A->leng[$b].','.$A->trans[$aux].'">';
+                      echo '<input type="hidden" name="trans_'.$aux.$value.$A->estados[$a].','.$A->leng[$b].','.$A->trans[$aux].'">';
                       $aux++;
                     }
                   }

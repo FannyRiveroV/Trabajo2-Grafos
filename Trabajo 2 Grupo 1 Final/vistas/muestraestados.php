@@ -213,9 +213,7 @@
                   }
                 
                   while( isset($_POST['t2_'.$cont2]) == 'true'){
-                    //if($_POST['t2_'.$cont2]!='x')
-                    //{
-                      //echo 'contador: '.$cont2.'<br>';
+                 
                       $t2[$cont2]=$_POST['t2_'.$cont2];
                       
                     //
@@ -301,18 +299,13 @@
                 if($tipo_auto=="2afnd")
                 {               
                   while( isset($_POST['t_'.$cont]) == 'true'){
-                    //if($_POST['t_'.$cont]!='x')
-                    //{
-                      //echo 'contador: '.$cont.'<br>';
+                 
                       $t1[$cont]=$_POST['t_'.$cont];
                     //
                     $cont++;
                   }
              
                   while( isset($_POST['t2_'.$cont2]) == 'true'){
-                    //if($_POST['t2_'.$cont2]!='x')
-                    //{
-                      //echo 'contador: '.$cont2.'<br>';
                       $t2[$cont2]=$_POST['t2_'.$cont2];
                       
                     //

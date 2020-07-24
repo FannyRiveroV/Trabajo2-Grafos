@@ -48,7 +48,6 @@
                         echo "}<br>";
 
                         echo 'δ = {';
-                        $aux=0;
                         for($a=0;$a<count($this->trans);$a++){
                             echo '('.$this->trans[$a].'), ';
                     
@@ -104,9 +103,6 @@
                     array_push($B->trans,$_POST['trans2_'.$a]);
                     }
                 
-                    /*$A->verAuto();
-                    $B->verAuto();*/
-
                     $C=new AFD();
                     $C = union($A,$B,$C);
                     echo 'Union de ambos automatas:<br><br>';
@@ -115,7 +111,6 @@
 
                 function union($A, $B, $C)
                 {
-                    $tipo_auto=$_POST['tipo_auto'];
 
                     $C->est_ini="Q0";
                     $C->trans[0]="Q0,epsilon,".$A->est_ini;
@@ -159,12 +154,12 @@
 
                         for($a=0;$a<count($C->leng);$a++)
                         {
-                            if(isset($aux[$a]))
+                            if(isset($aux[$a])){
                                 array_push($aux2,$aux[$a]);
+                            }
                         }
 
                         $C->leng = $aux2;
-                    //$C->leng=array_unique($C->leng);
 
                     //TRANSICIONES
 
@@ -175,7 +170,9 @@
                     for($a=0;$a<count($B->trans);$a++)
                     {
                         if($B->trans[$a]!="x")
-                        array_push($C->trans,$B->trans[$a]);
+                        {
+                            array_push($C->trans,$B->trans[$a]);
+                        }
                     }
 
 
@@ -191,6 +188,7 @@
 
                 <form action="index.php?pagina=transformacion" method="POST">
                     <?php
+                        $valor='" value="';
                         echo '<input type="hidden" name="tipo_auto" value="1afnd">
                             <input type="hidden" name="est_ini" value="'.$C->est_ini.'">
                             <input type="hidden" name="cant_est" value="'.count($C->estados).'">
@@ -202,21 +200,21 @@
 
                         for($a=0;$a<count($C->estados);$a++)
                         {
-                            echo'<input type="hidden" name="est_'.$a.'" value="'.$C->estados[$a].'">';
+                            echo'<input type="hidden" name="est_'.$a.$valor.$C->estados[$a].'">';
                         }
                         for($a=0;$a<count($C->est_fin);$a++)
                         {               
-                        echo '<input type="hidden" name="estfinal_'.$a.'" value="'.$C->est_fin[$a].'">';
+                        echo '<input type="hidden" name="estfinal_'.$a.$valor.$C->est_fin[$a].'">';
                         }
 
                         for($a=0;$a<count($C->leng);$a++)
                         {               
-                        echo '<input type="hidden" name="leng_'.$a.'" value="'.$C->leng[$a].'">';
+                        echo '<input type="hidden" name="leng_'.$a.$valor.$C->leng[$a].'">';
                         }
 
                         for($a=0;$a<count($C->trans);$a++)
                         {               
-                        echo '<input type="hidden" name="trans_'.$a.'" value="'.$C->trans[$a].'">';
+                        echo '<input type="hidden" name="trans_'.$a.$valor.$C->trans[$a].'">';
                         }
 
                     ?>

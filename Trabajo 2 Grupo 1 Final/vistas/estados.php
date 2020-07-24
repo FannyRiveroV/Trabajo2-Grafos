@@ -29,10 +29,12 @@
                     //se imprimen n formularios según $cant_array
                     echo "1° Autómata: ";
 
-                    if($tipo_auto=="2afnd")
+                    if($tipo_auto=="2afnd"){
                       echo 'AFND <br>';
-                    else
+                    }
+                    else{
                       echo 'AFD<br>';
+                    }
                     for($a=0;$a<$cant_array;$a++){
 
                         echo '<input type="text" size="25" name="estado'.$a.'" placeholder="Nombre estado '.$a.'" required>
@@ -45,11 +47,12 @@
                     
                     echo '<br>2° Autómata';
 
-                    if($tipo_auto=="2afd")
+                    if($tipo_auto=="2afd"){
                       echo ': AFD <br>';
-                    else
+                    }
+                    else{
                       echo ': AFND<br>';
-                      
+                    }  
                     for($a=0;$a<$cant_array2;$a++){
                         echo '<input type="text" size="25" name="estado_'.$a.'" placeholder="Nombre estado '.$a.'" required>
                               <input type="radio" name="inicial2" value="'.$a.'" required>Inicial
