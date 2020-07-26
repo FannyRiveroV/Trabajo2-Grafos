@@ -25,22 +25,21 @@
 
 <body>
 
-  <div class="d-flex badge-secondary" id="content-wrapper">
+  <div class="d-flex " id="content-wrapper">
 
-  <!-- Sidebar -->
+    <!-- Sidebar -->
     <div id="sidebar-container" class=" border-right bgimg ">
       <div class="logo bgdegree">
-        <h2 class="font-weight-bold mb-0  " style="text-align: center;">Automatas</h2>
-    </div> 
-    <div class="menu list-group-flush"> 
-      <a href="index.php?pagina=automatas" class="list-group-item list-group-item-action text-muted  p-3 border-0">
-        <em class="material-icons">add_circle</em>  Ingresar Automatas </a>
-      <a href="index.php?pagina=nosotros" class="list-group-item list-group-item-action text-muted  p-3 border-0">
-        <em class="material-icons"> account_circle </em> Nosotros </a>
-      <a href="index.php?pagina=inicio" class="list-group-item list-group-item-action text-muted  p-3 border-0">Volver al Inicio</a>  
-    </div>
-  </div>
-  <!-- Fin sidebar -->
+        <h2 class="font-weight-bold mb-0  " style="text-align: center;">Autómatas</h2>
+      </div> 
+      <div class="menu list-group-flush"> 
+        <a href="index.php?pagina=automatas" class="list-group-item list-group-item-action text-muted  p-3 border-0">
+          <em class="material-icons">add_circle</em>  Ingresar Autómatas </a>
+        <a href="index.php?pagina=nosotros" class="list-group-item list-group-item-action text-muted  p-3 border-0">
+          <em class="material-icons"> account_circle </em> Nosotros </a>
+        <a href="index.php?pagina=inicio" class="list-group-item list-group-item-action text-muted  p-3 border-0">Volver al Inicio</a>  
+      </div>
+    <!-- Fin sidebar -->
     </div>
      <?php 
      $pagina='pagina';

@@ -12,7 +12,7 @@
         <div class="col-8"> <br> <br>
           <h3  class="display-4  text-center">Autómatas</h3> <hr>
           <div class="container mx-auto">
-            <div class="form-group px-5 shadow p-3 mb-5 bg-white rounded">
+            <div class="form-group px-5 shadow p-3 mb-5 contenido rounded">
             <?php 
                 //recuperamos los datos de los automatas
 
@@ -140,7 +140,17 @@
                   // imprime el automata 1
                   echo "K1 = {";
                       for($a=0;$a<count($K1);$a++){
-                          echo $K1[$a].",";
+                        if(count($K1)==1){
+                          echo $K1[$a];
+                        }
+                        else{
+                          if($a==count($K1)-1){
+                            echo $K1[$a];
+                          }else{
+                            echo $K1[$a].",";
+                          }
+                          
+                        }  
                       }
                   echo "} <br>";
 
@@ -148,55 +158,99 @@
                   
                   echo "F1 = {";
                     for($a=0;$a<count($Final1);$a++){
-                        echo $Final1[$a].",";
+                      if(count($Final1)==1){
+                        echo $Final1[$a];
+                      }
+                      else{
+                        echo ",".$Final1[$a];
+                      } 
                     }
-                  echo "}<br>";
+                    echo "}<br>";
 
                   echo "σ_1 = {";
                     for($a=0;$a<count($lenguaje_1);$a++){
-                        echo $lenguaje_1[$a].",";
+                      if(count($lenguaje_1)==1){
+                        echo $lenguaje_1[$a];
+                      }
+                      else{
+                        if($a==count($lenguaje_1)-1){
+                          echo $lenguaje_1[$a];
+                        }else{
+                          echo $lenguaje_1[$a].",";
+                        }
+                      }  
                     }
                   echo "}<br>";
 
-                  echo 'δ_1 = {';
+                  echo 'δ_1 = { ';
                     $aux=0;
                     for($a=0; $a < $cant_array; $a++){
                       for($b=0; $b <count($lenguaje_1); $b++){
-                        echo '(('.$K1[$a].', '.$lenguaje_1[$b].'), '.$t1[$aux].'), ';
+                        if(($a==count($lenguaje_1)-1) and ($b==count($lenguaje_1)-1)){
+                          echo '(('.$K1[$a].', '.$lenguaje_1[$b].'), '.$t1[$aux].') ';
+                        }else{
+                          echo '(('.$K1[$a].', '.$lenguaje_1[$b].'), '.$t1[$aux].'), ';
+                        }
                         $aux++;
                       }
                     }
                     echo "}<br><br>";
 
-
-
                     echo "SEGUNDA QUINTUPLA <br><br>";
                   // imprime el automata 2
                   echo "K2 = {";
-                      for($a=0;$a<count($K2);$a++){
-                          echo $K2[$a].",";
+                    for($a=0;$a<count($K2);$a++){
+                      if(count($K2)==1){
+                        echo $K2[$a];
                       }
+                      else{
+                        if($a==count($K2)-1){
+                          echo $K2[$a];
+                        }else{
+                          echo $K2[$a].",";
+                        }
+                        
+                      }  
+                    }  
                   echo "} <br>";
 
                   echo "I2 = ".$estad_inicial2."<br>";
                   
                   echo "F2 = {";
                     for($a=0;$a<count($Final2);$a++){
-                        echo $Final2[$a].",";
+                      if(count($Final2)==1){
+                        echo $Final2[$a];
+                      }
+                      else{
+                        echo ",".$Final2[$a];
+                      } 
                     }
                   echo "}<br>";
 
                   echo "σ_2 = {";
                     for($a=0;$a<count($lenguaje_2);$a++){
-                        echo $lenguaje_2[$a].",";
+                      if(count($lenguaje_2)==1){
+                        echo $lenguaje_2[$a];
+                      }
+                      else{
+                        if($a==count($lenguaje_2)-1){
+                          echo $lenguaje_2[$a];
+                        }else{
+                          echo $lenguaje_2[$a].",";
+                        }
+                      }  
                     }
                   echo "}<br>";
 
-                  echo 'δ_2 = {';
+                  echo 'δ_2 = { ';
                     $aux=0;
                     for($a=0; $a < $cant_array2; $a++){
                       for($b=0; $b <count($lenguaje_2); $b++){
-                        echo '(('.$K2[$a].', '.$lenguaje_2[$b].'), '.$t2[$aux].'), ';
+                        if(($a==count($lenguaje_2)-1) and ($b==count($lenguaje_2)-1)){
+                          echo '(('.$K2[$a].', '.$lenguaje_2[$b].'), '.$t2[$aux].') ';
+                        }else{
+                          echo '(('.$K2[$a].', '.$lenguaje_2[$b].'), '.$t2[$aux].'), ';
+                        }
                         $aux++;
                       }
                     }
@@ -223,60 +277,112 @@
                   echo "PRIMERA QUINTUPLA: AFD <br><br>";
                   // imprime el automata 1
                   echo "K1 = {";
-                      for($a=0;$a<count($K1);$a++){
-                          echo $K1[$a].",";
+                    for($a=0;$a<count($K1);$a++){
+                      if(count($K1)==1){
+                        echo $K1[$a];
                       }
+                      else{
+                        if($a==count($K1)-1){
+                          echo $K1[$a];
+                        }else{
+                          echo $K1[$a].",";
+                        }
+                        
+                      }  
+                    }
                   echo "} <br>";
 
                   echo "I1 = ".$estad_inicial."<br>";
                   
                   echo "F1 = {";
                     for($a=0;$a<count($Final1);$a++){
-                        echo $Final1[$a].",";
-                    }
-                  echo "}<br>";
-
-                  echo "σ_1 = {";
-                    for($a=0;$a<count($lenguaje_1);$a++){
-                        echo $lenguaje_1[$a].",";
-                    }
-                  echo "}<br>";
-
-                  echo 'δ_1 = {';
-                    $aux=0;
-                    for($a=0; $a < $cant_array; $a++){
-                      for($b=0; $b <count($lenguaje_1); $b++){
-                        echo '(('.$K1[$a].', '.$lenguaje_1[$b].'), '.$t1[$aux].'), ';
-                        $aux++;
+                      if(count($Final1)==1){
+                        echo $Final1[$a];
                       }
+                      else{
+                        echo ",".$Final1[$a];
+                      } 
                     }
-                  echo "}<br><br>";
+                    echo "}<br>";
+
+                    echo "σ_1 = {";
+                      for($a=0;$a<count($lenguaje_1);$a++){
+                        if(count($lenguaje_1)==1){
+                          echo $lenguaje_1[$a];
+                        }
+                        else{
+                          if($a==count($lenguaje_1)-1){
+                            echo $lenguaje_1[$a];
+                          }else{
+                            echo $lenguaje_1[$a].",";
+                          }
+                        }  
+                      }
+                    echo "}<br>";
+
+                    echo 'δ_1 = { ';
+                      $aux=0;
+                      for($a=0; $a < $cant_array; $a++){
+                        for($b=0; $b <count($lenguaje_1); $b++){
+                          if(($a==count($lenguaje_1)-1) and ($b==count($lenguaje_1)-1)){
+                            echo '(('.$K1[$a].', '.$lenguaje_1[$b].'), '.$t1[$aux].') ';
+                          }else{
+                            echo '(('.$K1[$a].', '.$lenguaje_1[$b].'), '.$t1[$aux].'), ';
+                          }
+                          $aux++;
+                        }
+                      }
+                      echo "}<br><br>";
 
 
 
                   $Num_trans=$_POST['n_transxd'];
                   echo'SEGUNDA QUINTUPLA: AFND<br>';
-                  echo "K2 = {";
-                    for($a=0;$a<count($K2);$a++){
-                        echo $K2[$a].",";
+                  echo "K1 = {";
+                  for($a=0;$a<count($K2);$a++){
+                    if(count($K2)==1){
+                      echo $K2[$a];
                     }
+                    else{
+                      if($a==count($K2)-1){
+                        echo $K2[$a];
+                      }else{
+                        echo $K2[$a].",";
+                      } 
+                    }  
+                  }
                   echo "} <br>";
 
                   echo "I2 = ".$estad_inicial2."<br>";
                   
                   echo "F2 = {";
-                    for($a=0;$a<count($Final2);$a++){
-                        echo $Final2[$a].",";
+                  for($a=0;$a<count($Final2);$a++){
+                    if(count($Final2)==1){
+                      echo $Final2[$a];
                     }
+                    else{
+                      echo ",".$Final2[$a];
+                    } 
+                  }
                   echo "}<br>";
 
                   echo "σ_2 = {";
-                    for($a=0;$a<count($lenguaje_2);$a++){
-                        echo $lenguaje_2[$a].",";
+                  for($a=0;$a<count($lenguaje_2);$a++){
+                    if(count($lenguaje_2)==1){
+                      echo $lenguaje_2[$a];
                     }
+                    else{
+                      if($a==count($lenguaje_2)-1){
+                        echo $lenguaje_2[$a];
+                      }else{
+                        echo $lenguaje_2[$a].",";
+                      }
+                    }  
+                  }
                   echo "}<br>";
+                  
+                  //Arreglar
                   echo 'δ_2 = {';
-
                   $cont2=0;
                   for($a=0; $a < $cant_array2; $a++){
                     for($b=0; $b <count($lenguaje_2); $b++)
@@ -506,11 +612,11 @@
 
                       if($tipo_auto=="2afd")
                       {
-                        echo '<input type="submit" value="Complemento de los automatas">';
+                        echo '<input class="btn btn-secondary btn-sm btninput active" type="submit" value="Complemento de los automatas">';
                       }
 
                       if($tipo_auto=="1afnd"){
-                        echo '<input type="submit" value="Complemento del AFD" >';
+                        echo '<input class="btn btn-secondary btn-sm btninput active" type="submit" value="Complemento del AFD" >';
                       }
                     ?>
               </form>
@@ -663,7 +769,7 @@
 
 
                 ?>
-                  <input type="submit" value="Union de los automatas">
+                  <input class="btn btn-secondary btn-sm btninput active" type="submit" value="Union de los automatas">
               </form>
               
               <form action="index.php?pagina=concatenacion" method="POST">
@@ -805,7 +911,7 @@
                   }
 
                 ?>
-                <input type="submit" value="Concatenacion de los automatas">
+                <input class="btn btn-secondary btn-sm btninput active" type="submit" value="Concatenacion de los automatas">
                 <input type="radio" name="tipo_conc" value="A->B" required>A->B
                 <input type="radio" name="tipo_conc" value="B->B" required>B->A
                 
@@ -857,7 +963,7 @@
                     
                     }
                     echo"<input type='hidden' name='cant_trans' value='".$aux."'> ";
-                    echo '<input type="submit" value="Transformar el AFND a AFD">';
+                    echo '<input class="btn btn-secondary btn-sm btninput active" type="submit" value="Transformar el AFND a AFD">';
                   }
 
                   if($tipo_auto=="2afnd")
@@ -944,8 +1050,7 @@
                     
                     }
                     echo"<input type='hidden' name='cant_trans2' value='".$aux."'> ";
-                    
-                    echo "<input type='submit' value='Transformar los AFNDs a AFDs'>";
+                    echo '<input class="btn btn-secondary btn-sm btninput active" type="submit" value="Transformar los AFNDs a AFDs">';
                   }
 
                   ?>
@@ -1038,7 +1143,7 @@
 
 
                 ?>
-                <input type="submit" value="Simplificar AFD">
+                <input class="btn btn-secondary btn-sm btninput active" type="submit" value="Simplificar AFD">
               </form>
 
               <form action="index.php?pagina=interseccion" method="POST">
@@ -1117,8 +1222,8 @@
                           $aux++;
                         }
                       }
-                      echo"<input type='hidden' name='cant_trans2' value='".$aux."'>
-                          <input type='submit' value='Intersección de automatas'>";
+                      echo"<input class='btn btn-secondary btn-sm btninput active' type='hidden' name='cant_trans2' value='".$aux."'>
+                          <input class='btn btn-secondary btn-sm btninput active' type='submit' value='Intersección de automatas'>";
                     }
                     
 

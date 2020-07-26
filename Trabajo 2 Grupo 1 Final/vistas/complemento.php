@@ -12,7 +12,7 @@
         <div class="col-8"> <br> <br>
           <h3  class="display-4  text-center">Autómatas</h3> <hr>
           <div class="container mx-auto">
-            <div class="form-group px-5 shadow p-3 mb-5 bg-white rounded">            
+            <div class="form-group px-5 shadow p-3 mb-5 contenido rounded">            
             <?php
             
             $tipo_auto=$_POST['tipo_auto'];
@@ -26,14 +26,13 @@
               
               function verAuto()
               {
-                $br= echo "}<br>";
                 echo "QUINTUPLA <br><br>";
                 // imprime el automata 
                   echo "K = {";
                       for($a=0;$a<count($this->estados);$a++){
                           echo $this->estados[$a].",";
                       }
-                  $br;
+                  echo "} <br>";
                   
                   echo "I = ".$this->est_ini."<br>";
   
@@ -43,15 +42,14 @@
                         echo $this->est_fin[$a].",";
                       }
                     }
-                  echo "}";
-                  echo "<br>";
+                  echo "}<br>";
                   
                   echo "σ = {";
                   for($a=0;$a<count($this->leng);$a++)
                   {
                       echo $this->leng[$a].",";
                   }
-                  $br;
+                  echo "}<br>";
   
                   echo 'δ = {';
                   $aux=0;
@@ -140,40 +138,8 @@
               }
 
               complemento($A);
-
-              echo "PRIMERA QUINTUPLA <br><br>";
-              // imprime el automata 
-                echo "K1 = {";
-                    for($a=0;$a<count($A->estados);$a++){
-                        echo $A->estados[$a].",";
-                    }
-                $br
-                
-                echo "I1 = ".$A->est_ini."<br>";
-
-                echo "F1 = {";
-                  for($a=0;$a<count($A->est_fin);$a++){
-                      echo $A->est_fin[$a].",";
-                  }
-                echo "}";
-                echo "<br>";
-                
-                echo "σ_1 = {";
-                for($a=0;$a<count($A->leng);$a++)
-                {
-                    echo $A->leng[$a].",";
-                }
-                $br
-
-                echo 'δ_1: {';
-                $aux=0;
-                for($a=0; $a < $cant_est; $a++){
-                  for($b=0; $b <count($A->leng); $b++){
-                    echo '(('.$A->estados[$a].', '.$A->leng[$b].'), '.$A->trans[$aux].'), ';
-                    $aux++;
-                  }
-                }
-                echo "}<br><br>";
+              $A->verAuto();
+              
 
             }
 
@@ -209,9 +175,6 @@
               }
             }
             ?>
-
-
-
 
             <form action="index.php?pagina=simplificar" method="POST">
             <?php 
@@ -297,23 +260,23 @@
 
                   for($a=0;$a<count($A->estados);$a++)
                   {
-                    echo '<input type="hidden" name="est_'.$a.$value.$A->estados[$a].'">';
+                    echo '<input type="hidden" name="est_'.$a.'" value="'.$A->estados[$a].'">';
                   }
                   
                   for($a=0;$a<count($A->est_fin);$a++)
                   {
-                    echo '<input type="hidden" name="estfinal_'.$a.$value.$A->est_fin[$a].'">';
+                    echo '<input type="hidden" name="estfinal_'.$a.'" value="'.$A->est_fin[$a].'">';
 
                   }
                   for($a=0;$a<count($A->leng);$a++)
                   {
-                    echo '<input type="hidden" name="leng_'.$a.$value.$A->leng[$a].'">';
+                    echo '<input type="hidden" name="leng_'.$a.'" value="'.$A->leng[$a].'">';
                   }
 
                   $aux=0;
                   for($a=0; $a < count($A->estados); $a++){
                     for($b=0; $b <count($A->leng); $b++){
-                      echo '<input type="hidden" name="trans_'.$aux.$value.$A->estados[$a].','.$A->leng[$b].','.$A->trans[$aux].'">';
+                      echo '<input type="hidden" name="trans_'.$aux.'" value="'.$A->estados[$a].','.$A->leng[$b].','.$A->trans[$aux].'">';
                       $aux++;
                     }
                   }
@@ -325,7 +288,7 @@
               
             ?>
 
-            <input type="submit" value="Simplificar Autómatas">
+            <input class="btn btn-secondary btn-sm btninput active" type="submit" value="Simplificar Autómatas">
             </form>
 
             </div>

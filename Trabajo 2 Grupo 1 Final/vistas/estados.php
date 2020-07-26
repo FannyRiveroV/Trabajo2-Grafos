@@ -12,7 +12,7 @@
         <div class="col-8"> <br> <br>
           <h3  class="display-4  text-center">Ingreso de Autómatas</h3> <hr>
           <div class="container mx-auto">
-            <div class="form-group px-5 shadow p-3 mb-5 bg-white rounded">
+            <div class="form-group px-5 shadow p-3 mb-5 contenido rounded">
 
             <form action="index.php?pagina=transiciones" method="POST">
 
@@ -37,7 +37,7 @@
                     }
                     for($a=0;$a<$cant_array;$a++){
 
-                        echo '<input type="text" size="25" name="estado'.$a.'" placeholder="Nombre estado '.$a.'" required>
+                        echo '<input class="casillainput" type="text" size="25" name="estado'.$a.'" placeholder="Nombre estado '.$a.'" required>
                               <input type="radio" name="inicial" value="'.$a.'" required>Inicial
                               <input type="checkbox" name="final_'.$a.'" value="'.$a.'">Final
                         
@@ -54,7 +54,7 @@
                       echo ': AFND<br>';
                     }  
                     for($a=0;$a<$cant_array2;$a++){
-                        echo '<input type="text" size="25" name="estado_'.$a.'" placeholder="Nombre estado '.$a.'" required>
+                        echo '<input class="casillainput" type="text" size="25" name="estado_'.$a.'" placeholder="Nombre estado '.$a.'" required>
                               <input type="radio" name="inicial2" value="'.$a.'" required>Inicial
                               <input type="checkbox" name="final2_'.$a.'" value="'.$a.'">Final
                               <br>';
@@ -69,21 +69,21 @@
                     {
                       echo'Ingrese el lenguaje con el cual trabajará el autómata:
                       <br>
-                      σ: <input type="text" size="25" name="lenguaje_1" placeholder="1° Autómata" required><br>
-                      σ: <input type="text" size="25" name="lenguaje_2" placeholder="2° Autómata" required>';
+                      σ: <input class="casillainput" type="text" size="25" name="lenguaje_1" placeholder="1° Autómata" required><br>
+                      σ: <input class="casillainput" type="text" size="25" name="lenguaje_2" placeholder="2° Autómata" required>';
                     }
                     
                     if($tipo_auto == "1afnd")
                     {
                       echo'Ingrese el lenguaje con el cual trabajará el autómata:
                       <br>
-                      σ: <input type="text" size="25" name="lenguaje_1" placeholder="1° Autómata" required><br><br>
+                      σ: <input class="casillainput" type="text" size="25" name="lenguaje_1" placeholder="1° Autómata" required><br><br>
 
                       Separe con una coma "," cada caracter, o palabra que leerá el autómata.<br>
                       Si quiere leer un epsilon, pongalo al final Ej: "a,b, ... ,epsilon"
 
-                      σ: <input type="text" size="25" name="lenguaje_2" placeholder="2° Autómata" required><br>
-                      N° de transiciones por lenguaje: <input type="number" size="5" name="n_trans_afnd" min="0" required pattern="[0-9]{1,2}">
+                      σ: <input class="casillainput" type="text" size="25" name="lenguaje_2" placeholder="2° Autómata" required><br>
+                      N° de transiciones por lenguaje: <input class="casillainput" type="number" size="5" name="n_trans_afnd" min="0" required pattern="[0-9]{1,2}">
                       
                       <br>';
       
@@ -96,21 +96,21 @@
 
                       Separe con una coma "," cada caracter, o palabra que leerá el autómata:<br>
                       Si quiere leer un epsilon, pongalo al final Ej: "a,b, ... ,epsilon"<br>
-                      σ: <input type="text" size="25" name="lenguaje_1" placeholder="1° Autómata" required><br>
+                      σ: <input class="casillainput" type="text" size="25" name="lenguaje_1" placeholder="1° Autómata" required><br>
                       N° Máx de transiciones por c/lenguaje: <input type="number" size="5" name="n_trans_afnd" min="0" required pattern="[0-9]{1,2}"><br><br>
                       
                       Separe con una coma "," cada caracter, o palabra que leerá el autómata:<br>
                       Si quiere leer un epsilon, pongalo al final Ej: "a,b, ... ,epsilon" <br>
-                      σ: <input type="text" size="25" name="lenguaje_2" placeholder="2° Autómata" required><br>
+                      σ: <input class="casillainput" type="text" size="25" name="lenguaje_2" placeholder="2° Autómata" required><br>
                       N° Máx de transiciones por c/lenguaje: <input type="number" size="5" name="n_trans_afnd2" min="0" required pattern="[0-9]{1,2}"><br>';
                     }                       
                         
 
-                ?>
+                ?><br>
 
 
 
-                <input type="submit" value="Avanzar">
+                <input class="btn btn-secondary btn-lg active btninput" type="submit" value="Avanzar">
                 <input type="hidden" name='cantida_estados_1' value="<?php echo $cant_array?>">
                 <input type="hidden" name='cantida_estados_2' value="<?php echo $cant_array2?>">
                 <input type="hidden" name='tipo_auto' value="<?php echo $tipo_auto?>">

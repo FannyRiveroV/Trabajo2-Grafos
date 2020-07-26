@@ -12,13 +12,15 @@
         <div class="col-8"> <br> <br>
           <h3  class="display-4  text-center">Autómatas</h3> <hr>
           <div class="container mx-auto">
-            <div class="form-group px-5 shadow p-3 mb-5 bg-white rounded">            
+            <div class="form-group px-5 shadow p-3 mb-5 contenido rounded">            
             <?php
 
             $tipo_auto = $_POST['tipo_auto'];
             echo 'tipo auto :'.$tipo_auto.'<br>';
+            $ep= 'epsilon';
             class AFD
             {
+              
               public $estados = array();
               public $est_ini;
               public $est_fin = array();
@@ -26,13 +28,12 @@
               public $trans=array();
 
               function verAuto(){
-                $br= echo "}<br>";
                 echo 'QUINTUPLA  <br>';
                 echo "K = {";
                 for($a=0;$a<count($this->estados);$a++){
                     echo $this->estados[$a].",";
                 }
-                $br;
+                echo "}<br>";
 
                 echo "I = ".$this->est_ini."<br>";
             
@@ -40,28 +41,26 @@
                 for($a=0;$a<count($this->est_fin);$a++){
                   echo $this->est_fin[$a].",";
                 }
-                $br;
+                echo "}<br>";
 
                 echo "σ = {";
                 for($a=0;$a<count($this->leng);$a++){
                   echo $this->leng[$a].",";
                 } 
-        
+                echo"}<br>";
 
                 echo 'δ = {';
                 for($a=0; $a < count($this->trans); $a++){
                   echo '('.$this->trans[$a].'), ';
                 }
-        
-
-
+  
               }
             }   
 
             class AFDchoristico
             {
-              $noex='no existen';
-              $ep=$ep;
+              public $noex = 'No existen';
+              public $ep= 'epsilon';
               public $estados = array();
               public $est_ini = array();
               public $est_fin = array();
@@ -97,13 +96,13 @@
                       echo $array2[$a].",";
                     }
                   }
-        
+                  echo"}<br>";
 
                 echo "σ = {";
                 for($a=0;$a<count($this->leng);$a++){
                   echo $this->leng[$a].",";
                 } 
-        
+                echo"}<br>";
 
                 echo 'δ = {';
                 $array=array_unique($this->trans);
@@ -113,14 +112,14 @@
                   }
                   
                 }
-        
+                echo"}<br>";
               }
             }
 
             if($tipo_auto=='1afnd')
             {
               $A=new AFD();
-             //recuperar las transiciiones
+             //recuperamos el automata
               for($a=0;$a<$_POST['cant_est'];$a++)
               {
                 $A->estados[$a]=$_POST['est_'.$a];
@@ -134,8 +133,9 @@
               }
 
               for($a=0;$a<$_POST['cant_leng'];$a++)
-              {
-                array_push($A->leng,$_POST['leng_'.$a]);
+              { 
+                if(isset($_POST['leng_'.$a]))
+                 array_push($A->leng,$_POST['leng_'.$a]);
               }
 
               for($a=0;$a<$_POST['cant_trans'];$a++)
@@ -157,7 +157,7 @@
                       $A->est_ini=$arreglo[2];
           
                   }
-              }
+                }
                 for($a=0;$a<count($conj_ini);$a++){
                   array_push($C->est_ini,$conj_ini[$a]);
                 }
@@ -199,14 +199,14 @@
                 if(isset($C->estados[$a]))
                 {
                   $xd=existetrans($C->estados[$a],$C->leng,$C->trans);
-                  if($xd== $noex)
+                  if($xd=='no existe')
                   {
                     transformacion($A,$C,str_split($C->estados[$a],2),$matriztrans);
                   }
                 }
               }
 
-              //finales
+            //finales
 
               for($a=0;$a<count($C->estados);$a++)
               {
@@ -270,6 +270,7 @@
               }
 
               $C = new AFDchoristico();
+
                 for($a=0;$a<count($conj_ini);$a++){
                   array_push($C->est_ini,$conj_ini[$a]);
                 }
@@ -309,11 +310,31 @@
               for($a=0;$a<count($C->estados);$a++)
               {
                 $xd=existetrans($C->estados[$a],$C->leng,$C->trans);
-                if($xd== $noex)
+                if($xd=="no existe")
                 {
                   transformacion($A,$C,str_split($C->estados[$a],2),$matriztrans);
                 }
               }
+
+              //finales
+
+              for($a=0;$a<count($C->estados);$a++)
+              {
+                if(isset($C->estados[$a])){
+                  $string = str_split($C->estados[$a],2);
+                  for($b=0;$b<count($string);$b++)
+                  {
+                    for($c=0;$c<count($A->est_fin);$c++)
+                    {
+                      if($string[$b] == $A->est_fin[$c])
+                      {
+                        array_push($C->est_fin,$C->estados[$a]);
+                      }
+                    }   
+                  }
+                }
+              }
+
               $C->verAuto();
 
               echo '<br>';
@@ -392,9 +413,29 @@
               for($a=0;$a<count($D->estados);$a++)
               {
                 $xd=existetrans($D->estados[$a],$D->leng,$D->trans);
-                if($xd== $noex)
+                if($xd== "no existe")
                 {
                   transformacion($B,$D,str_split($D->estados[$a],2),$matriztrans);
+                }
+              }
+
+
+              //finales
+
+              for($a=0;$a<count($D->estados);$a++)
+              {
+                if(isset($D->estados[$a])){
+                  $string = str_split($D->estados[$a],2);
+                  for($b=0;$b<count($string);$b++)
+                  {
+                    for($c=0;$c<count($B->est_fin);$c++)
+                    {
+                      if($string[$b] == $B->est_fin[$c])
+                      {
+                        array_push($D->est_fin,$D->estados[$a]);
+                      }
+                    }   
+                  }
                 }
               }
               $D->verAuto();
@@ -468,7 +509,7 @@
 
               for($a=0;$a<count($lenguaje);$a++)
               {
-                if($lenguaje[$a]!=$ep)
+                if($lenguaje[$a]!='epsilon')
                 {
                   $contador++;
                 }
@@ -496,7 +537,7 @@
               for($a=0;$a<count($transiciones);$a++)
               {
                 $array=explode(',',$transiciones[$a]);
-                if($array[0]==$estado && $array[1]==$ep){
+                if($array[0]==$estado and $array[1]=='epsilon'){
                   return 'true';
                 }
               }
@@ -517,7 +558,7 @@
                 return 'existen';
               }
               else{
-                return $noex; 
+                return 'no existe'; 
               }
             }
 
@@ -526,7 +567,7 @@
             
             
             <form action="index.php?pagina=simplificar" method="POST">
-              <?php
+            <?php
                  echo'<input type="hidden" name="tipo_auto" value="1afnd">
                  <input type="hidden" name="est_ini" value="'.implode($C->est_ini).'">
                  <input type="hidden" name="cant_est" value="'.count($C->estados).'">
@@ -534,40 +575,38 @@
                  <input type="hidden" name="cant_leng" value="'.count($C->leng).'">';
 
                  $aux2=0;
-                 $valor='" value="';
                  for($a=0;$a<count($C->estados);$a++)
                  { 
                    if(isset($C->estados[$a])){
-                    echo '<input type="hidden" name="est_'.$aux2.$valor.$C->estados[$a].'">';
+                    echo '<input type="hidden" name="est_'.$aux2.'" value="'.$C->estados[$a].'">';
                     $aux2++;
                    }
                  }
                  
                  for($a=0;$a<count($C->est_fin);$a++)
                  {
-                   echo '<input type="hidden" name="estfinal_'.$a.$valor.$C->est_fin[$a].'">';
+                   echo '<input type="hidden" name="estfinal_'.$a.'" value="'.$C->est_fin[$a].'">';
 
                  }
                  for($a=0;$a<count($C->leng);$a++)
                  {
-                   echo '<input type="hidden" name="leng_'.$a.$valor.$C->leng[$a].'">';
+                   echo '<input type="hidden" name="leng_'.$a.'" value="'.$C->leng[$a].'">';
                  }
 
                  $aux=0;
                  $array=array_unique($C->trans);
                   for($a=0; $a < count($C->trans); $a++){
                     if(isset($array[$a])){
-                      echo '<input type="hidden" name = "trans_'.$aux.$valor.$array[$a].'">';
+                      echo '<input type="hidden" name = "trans_'.$aux.'" value="'.$array[$a].'">';
                       $aux++;
                     }
                   }
                  echo '<input type="hidden" name="cant_trans" value="'.$aux.'">';
             
               ?>
-
-
-
-            <input type="submit" value="Simplificar AFD transformado">
+            
+  
+            <input class="btn btn-secondary btn-sm btninput active" type="submit" value="Simplificar AFD transformado">
             </form>
 
             

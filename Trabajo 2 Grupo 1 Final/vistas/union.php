@@ -12,7 +12,7 @@
         <div class="col-8"> <br> <br>
           <h3  class="display-4  text-center">Autómatas</h3> <hr>
           <div class="container mx-auto">
-            <div class="form-group px-5 shadow p-3 mb-5 bg-white rounded">            
+            <div class="form-group px-5 shadow p-3 mb-5 contenido rounded">            
                 <?php
 
 
@@ -218,7 +218,7 @@
                         }
 
                     ?>
-                    <input type="submit" value="Transformacion a AFD">
+                    <input class="btn btn-secondary btn-sm btninput active" type="submit" value="Transformacion a AFD">
                 </form>
             </div>
           </div>

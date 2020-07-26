@@ -12,7 +12,7 @@
         <div class="col-8"> <br> <br>
           <h3  class="display-4  text-center">Autómatas</h3> <hr>
           <div class="container mx-auto">
-            <div class="form-group px-5 shadow p-3 mb-5 bg-white rounded">            
+            <div class="form-group px-5 shadow p-3 mb-5 contenido rounded">            
             <?php
 
             $tipo_auto=$_POST['tipo_auto'];
@@ -107,7 +107,10 @@
                 {
                     array_push($B->trans,$_POST['trans2_'.$a]);
                 }
-         
+                
+            
+                //$A->verAuto();
+                //$B->verAuto();
                 simplificar($A);
                 simplificar($B);
 
@@ -140,6 +143,8 @@
                 {
                     array_push($A->trans,$_POST['trans_'.$a]);
                 }
+                
+                //$A->verAuto();
                 echo 'SIMPLIFICACION: <br><br>';
                 simplificar($A);
                 $A->verAuto();
@@ -220,7 +225,8 @@
                                 }
                             }
                             if($dif==0){
-                                return array $tab[$a][0],$tab[$b][0];
+                                $abc=array($tab[$a][0],$tab[$b][0]);
+                                return $abc;
                             }       
                         }
                     }
@@ -232,7 +238,7 @@
             function recursiva($lamatrih,$automata){
                 for($t=0;$t<count($lamatrih);$t++){
                     $abc1=filasiguales($lamatrih[$t]);
-                    if(!$abc1){
+                    if($abc1!=FALSE){
                         $abc2=array();
                         foreach($lamatrih[$t] as $estado){
                             if(!in_array($estado[0],$abc1)){
@@ -243,7 +249,7 @@
                         $t2=creartabla($abc2,$lamatrih[$t]);
                         array_unshift($t2,$t1);
                         $lamatrih[$t]=$t2;
-                        if($abc1[0]==$automata->est_ini || $abc1[1]==$automata->est_ini){
+                        if($abc1[0]==$automata->est_ini or $abc1[1]==$automata->est_ini){
                             $automata->est_ini=$abc1[0].$abc1[1];
                         }
                         $lamatrih=cambiarestados($lamatrih,$abc1);
@@ -266,7 +272,7 @@
 
             function comprobartermino($lamatrih){
                 foreach($lamatrih as $tab){
-                    if(!filasiguales($tab)){
+                    if(filasiguales($tab)!=FALSE){
                         return TRUE;
                     }
                 }
@@ -277,7 +283,7 @@
                 for($c=0;$c<count($lamatri);$c++){
                     for($i=0;$i<count($lamatri[$c]);$i++){
                         for($j=0;$j<count($lamatri[$c][$i]);$j++){
-                            if($abc1[0]==$lamatri[$c][$i][$j]  || $abc1[1]==$lamatri[$c][$i][$j]){
+                            if($abc1[0]==$lamatri[$c][$i][$j] or $abc1[1]==$lamatri[$c][$i][$j]){
                                 $lamatri[$c][$i][$j]=$abc1[0].$abc1[1];
                             }       
                         }

@@ -20,7 +20,7 @@
         <div class="col-8"> <br> <br>
           <h3  class="display-4  text-center">Autómatas</h3> <hr>
           <div class="container mx-auto">
-            <div class="form-group px-5 shadow p-3 mb-5 bg-white rounded">
+            <div class="form-group px-5 shadow p-3 mb-5 rounded contenido">
             
             <form action="index.php?pagina=muestraestados" method="POST">
               <?php
@@ -63,17 +63,21 @@
 
                 $pal=$_POST['lenguaje_1'];
                 $pal2=$_POST['lenguaje_2'];
+
+                $txt='<br> 
+                  Q-------------> σ ------>δ(Q,σ) <br>';
+                $trans='Transiciones del 1° Autómata';
+                $flecha='------> δ: ';
+                $flecha2=' -----> ';
+                
                 
                 if($tipo_auto == "2afd")
                 {
 
                   $Numero_transiciones_1=strlen($pal);
                   $Numero_transiciones_2=strlen($pal2);
-                  $flecha='------> δ: ';
-                  $flecha2=' -----> ';
-                  $txt='<br> 
-                  Q-------------> σ ------>δ(Q,σ) <br><br>';
-                  $trans='Transiciones del 1° Autómata';
+
+
                   echo $trans.$txt;
                   $cont=0;
                   for($a=0; $a < $cant_array; $a++){
@@ -85,8 +89,8 @@
                       }
                       
                   }
-
-                  echo 'Transiciones del 2° Autómata'.$txt;
+                  echo '<br><br>';
+                  echo '<br><br>Transiciones del 2° Autómata'.$txt;
                   $cont2=0;
                   for($a=0; $a < $cant_array2; $a++){
                       for($b=0; $b <$Numero_transiciones_2; $b++){
@@ -103,7 +107,8 @@
                 if($tipo_auto == "1afnd")
                 {
                   $Numero_transiciones_1=strlen($pal);
-                  echo $trans.$txt;
+                  echo $trans;
+                  echo $txt;
                   $cont=0;
                   for($a=0; $a < $cant_array; $a++){
                       for($b=0; $b <$Numero_transiciones_1; $b++){
@@ -116,14 +121,14 @@
 
 
                   $Num_trans=$_POST['n_trans_afnd'];
-                  echo '<input type="hidden" name="n_transxd" value="'.$Num_trans.'"';
+                  echo '<input class="casillainput" type="hidden" name="n_transxd" value="'.$Num_trans.'"';
 
                   
                   $leng_afnd=explode(",",$pal2);
                   $textolargo='<br>
                   Q-------------> σ ------>δ(Q,σ) <br>
-                  Si no existe la trancision, escriba un x o X<br><br>';
-                  echo '<br>Transiciones del 2° Autómata'.$textolargo;
+                  <br>Si no existe la trancision, escriba un x o X<br>';
+                  echo '<br><br>Transiciones del 2° Autómata'.$textolargo;
                   $cont2=0;
                   for($a=0; $a < $cant_array2; $a++){
                       for($b=0; $b <count($leng_afnd); $b++){
@@ -142,13 +147,15 @@
                 
                 if($tipo_auto =="2afnd")
                 {
-
+                  $textolargo='<br>
+                  Q-------------> σ ------>δ(Q,σ) <br>
+                  <br>Si no existe la trancision, escriba un x o X<br>';
 
                   $leng_afnd=explode(",",$pal);
                   $Num_trans=$_POST['n_trans_afnd'];
-                  echo '<input type="hidden" name="n_transxd" value="'.$Num_trans.'"';
+                  echo '<input class="casillainput" type="hidden" name="n_transxd" value="'.$Num_trans.'">';
                   
-                  echo $trans.$textolargo;
+                  echo "Transiciones del 1° Autómata ".$textolargo;
                   $cont=0;
                   for($a=0; $a < $cant_array; $a++){
                       for($b=0; $b <count($leng_afnd); $b++){
@@ -164,8 +171,9 @@
 
                   $leng_afnd2=explode(",",$pal2);
                   $Num_trans2=$_POST['n_trans_afnd2'];
-                  echo '<input type="hidden" name="n_transxd2" value="'.$Num_trans2.'"';
-
+                  echo '<input class="casillainput" type="hidden" name="n_transxd2" value="'.$Num_trans2.'">';
+                  
+                  echo '<br><br>';
                   echo 'Transiciones del 2° Autómata'.$textolargo;
                   $cont2=0;
                   for($a=0; $a < $cant_array2; $a++){
@@ -184,7 +192,7 @@
                 
 
                 function opciones($K,$nombre){?>
-                  <select type="text" name="<?php echo $nombre?>">
+                  <select class="casillainput" type="text" name="<?php echo $nombre?>">
                     <?php
                     foreach($K as $opciones){
                     ?>
@@ -208,21 +216,21 @@
                $valor='" value="';
                 for($a=0;$a<$cant_array;$a++)
                 {
-                  echo '<input type="hidden" name="estado'.$a.$valor.$K1[$a].'">';
+                  echo '<input class="casillainput" type="hidden" name="estado'.$a.$valor.$K1[$a].'">';
                 }
                 for($a=0;$a<$cant_array2;$a++)
                 {
-                  echo '<input type="hidden" name="estado_'.$a.$valor.$K2[$a].'" >';
+                  echo '<input class="casillainput" type="hidden" name="estado_'.$a.$valor.$K2[$a].'" >';
                 }
 
                 for($a=0;$a<count($F1);$a++)
                 {
-                  echo '<input type="hidden" name="fin_'.$a.$valor.$F1[$a].'" >';
+                  echo '<input class="casillainput" type="hidden" name="fin_'.$a.$valor.$F1[$a].'" >';
                 }
 
                 for($a=0;$a<count($F2);$a++)
                 {
-                  echo '<input type="hidden" name="fin2_'.$a.$valor.$F2[$a].'" >';
+                  echo '<input class="casillainput" type="hidden" name="fin2_'.$a.$valor.$F2[$a].'" >';
                 }
                
               ?> 
@@ -241,40 +249,40 @@
               
                 if($tipo_auto=="2afd")
                 {
-                  echo'<input type="hidden" name="lenguaj_1" value="'.$pal.'"  >  
-                       <input type="hidden" name="lenguaj_2" value="'.$pal2.'" >  ';
+                  echo'<input class="casillainput" type="hidden" name="lenguaj_1" value="'.$pal.'"  >  
+                       <input class="casillainput" type="hidden" name="lenguaj_2" value="'.$pal2.'" >  ';
                 }
 
                 if($tipo_auto=="1afnd")
                 {
-                  echo'<input type="hidden" name="lenguaj_1" value="'.$pal.'" >';
+                  echo'<input class="casillainput" type="hidden" name="lenguaj_1" value="'.$pal.'" >';
 
-                  echo'<input type="hidden" name="cant_leng" value="'.count($leng_afnd).'" >';
+                  echo'<input class="casillainput" type="hidden" name="cant_leng" value="'.count($leng_afnd).'" >';
                   for($a=0;$a<count($leng_afnd);$a++)
                   {
-                    echo '<input type="hidden" name="text'.$a.$valor.$leng_afnd[$a].'" >';
+                    echo '<input class="casillainput" type="hidden" name="text'.$a.$valor.$leng_afnd[$a].'" >';
                   }
 
                 }
 
                 if($tipo_auto=="2afnd")
                 {
-                  echo'<input type="hidden" name="cant_leng" value="'.count($leng_afnd).'" >';
-                  echo'<input type="hidden" name="cant_leng2" value="'.count($leng_afnd2).'" >';
+                  echo'<input class="casillainput" type="hidden" name="cant_leng" value="'.count($leng_afnd).'" >';
+                  echo'<input class="casillainput" type="hidden" name="cant_leng2" value="'.count($leng_afnd2).'" >';
 
 
                   for($a=0;$a<count($leng_afnd);$a++){
-                    echo '<input type="hidden" name="lenguaj_1'.$a.$valor.$leng_afnd[$a].'" >';
+                    echo '<input class="casillainput" type="hidden" name="lenguaj_1'.$a.$valor.$leng_afnd[$a].'" >';
                   }
 
                   for($a=0;$a<count($leng_afnd2);$a++){
-                    echo '<input type="hidden" name="lenguaj_2'.$a.$valor.$leng_afnd2[$a].'" >';
+                    echo '<input class="casillainput" type="hidden" name="lenguaj_2'.$a.$valor.$leng_afnd2[$a].'" >';
                   }
                 }
 
               ?>
 
-              <input type="submit" value="Next">
+              <input class="btn btn-secondary btn-lg active btninput" type="submit" value="Siguiente">
             </form>
             </div>
           </div>

@@ -12,7 +12,7 @@
         <div class="col-8"> <br> <br>
           <h3  class="display-4  text-center">Autómatas</h3> <hr>
           <div class="container mx-auto">
-            <div class="form-group px-5 shadow p-3 mb-5 bg-white rounded"> 
+            <div class="form-group px-5 shadow p-3 mb-5 contenido rounded"> 
                 <?php
                     $tipo_auto=$_POST['tipo_auto'];
                     class AFD{
@@ -37,14 +37,14 @@
                             for($a=0;$a<count($this->est_fin);$a++){
                                 echo $this->est_fin[$a].",";
                             }
-                            $bri= echo "}<br>";
-                            $bri;
+                            echo "}<br>";
+                            
 
                             echo "σ = {";
                             for($a=0;$a<count($this->leng);$a++){
                                 echo $this->leng[$a].",";
                             }
-                            $bri;
+                            echo "}<br>";
 
                             echo 'δ = {';
                             for($a=0;$a<count($this->trans);$a++){
@@ -181,7 +181,7 @@
 
                     $C = new AFDchoristico();
                     //conjunto estados iniciales
-                        $epsilon='epsilon'
+                        $epsilon='epsilon';
                         $conj_ini=array();
                         array_push($conj_ini,$D->est_ini);
                         for($a=0;$a<count($D->trans);$a++)
@@ -265,7 +265,7 @@
                     $C->verAuto();
 
                     complemento($C);
-                    echo 'Intersección de los autómatas: <br><br>';
+                    echo '<br><br>Intersección de los autómatas: <br><br>';
                     $C->verAuto();
 
 
@@ -317,6 +317,7 @@
 
                     function union($A, $B, $C)
                     {
+                        $epsilon='epsilon';
                         $C->est_ini="Q0";
                         $C->trans[0]="Q0,epsilon,".$A->est_ini;
                         $C->trans[1]="Q0,epsilon,".$B->est_ini;
@@ -448,6 +449,7 @@
 
                     function cantLeng($lenguaje)
                     {
+                        $epsilon='epsilon';
                         $contador=0;
 
                         for($a=0;$a<count($lenguaje);$a++)
