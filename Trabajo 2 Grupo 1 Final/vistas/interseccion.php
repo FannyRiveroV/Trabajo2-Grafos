@@ -94,13 +94,13 @@
                               echo $array2[$a].",";
                             }
                           }
-                        $bri;
+                        echo "}<br>";
         
                         echo "σ = {";
                         for($a=0;$a<count($this->leng);$a++){
                           echo $this->leng[$a].",";
                         } 
-                        $bri;
+                        echo "}<br>";
         
                         echo 'δ = {';
                         $array=array_unique($this->trans);
@@ -110,7 +110,7 @@
                           }
                           
                         }
-                        $bri;
+                        echo "}<br>";
                       }
                     }
 
