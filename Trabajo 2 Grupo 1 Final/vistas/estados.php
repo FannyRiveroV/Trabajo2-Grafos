@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Grafos T1</title>
+  <title>Grafos T2</title>
 </head>
 <body>
     <!-- Page Content -->
     <!-- Page Content -->
     <div class="container">
       <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8"> <br> <br>
+        <div class="col-4"></div>
+        <div class="col-7"> <br> <br>
           <h3  class="display-4  text-center">Ingreso de Autómatas</h3> <hr>
           <div class="container mx-auto">
             <div class="form-group px-5 shadow p-3 mb-5 contenido rounded">
@@ -21,14 +21,8 @@
                   $cant_array = $_POST['cantidad_estados_1'];
                   $cant_array2 = $_POST['cantidad_estados_2'];
                   $tipo_auto=$_POST['tipo_auto'];
-
-                  echo "Cantidad de estados del 1° Autómata: ".$cant_array."<br>
-                        Cantidad de estados del 2° Autómata: ".$cant_array2."<br>";
-
-                  echo 'Use el siguiente formato para nombrar a los autómatas: " qX "// X : número de estados, Ej: "q1,..,q12"<br><br>';
                     //se imprimen n formularios según $cant_array
                     echo "1° Autómata: ";
-
                     if($tipo_auto=="2afnd"){
                       echo 'AFND <br>';
                     }
@@ -114,11 +108,6 @@
                 <input type="hidden" name='cantida_estados_1' value="<?php echo $cant_array?>">
                 <input type="hidden" name='cantida_estados_2' value="<?php echo $cant_array2?>">
                 <input type="hidden" name='tipo_auto' value="<?php echo $tipo_auto?>">
-
-
-
-
-
             </form>
             </div>
           </div>

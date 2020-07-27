@@ -6,8 +6,8 @@
 <body>
     <div class="container">
       <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8"> <br> <br>
+        <div class="col-4"></div>
+        <div class="col-7"> <br> <br>
           <h3  class="display-4  text-center">Ingreso de Automatas</h3> <hr>
           <div class="container  mx-auto">
             <div class="form-group px-5 shadow p-3 mb-5 contenido rounded">

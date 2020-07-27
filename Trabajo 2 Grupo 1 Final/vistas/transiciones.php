@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Grafos T1</title>
+  <title>Grafos T2</title>
 
 </head>
 
@@ -16,8 +16,8 @@
     <!-- Page Content -->
     <div class="container">
       <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8"> <br> <br>
+        <div class="col-4"></div>
+        <div class="col-7"> <br> <br>
           <h3  class="display-4  text-center">Autómatas</h3> <hr>
           <div class="container mx-auto">
             <div class="form-group px-5 shadow p-3 mb-5 rounded contenido">
@@ -66,7 +66,7 @@
 
                 $txt='<br> 
                   Q-------------> σ ------>δ(Q,σ) <br>';
-                $trans='Transiciones del 1° Autómata';
+                $trans='<h4>Transiciones del 1° Autómata</h4>';
                 $flecha='------> δ: ';
                 $flecha2=' -----> ';
                 
@@ -89,8 +89,8 @@
                       }
                       
                   }
-                  echo '<br><br>';
-                  echo '<br><br>Transiciones del 2° Autómata'.$txt;
+                  echo '<hr>';
+                  echo '<br><h4>Transiciones del 2° Autómata</h4>'.$txt;
                   $cont2=0;
                   for($a=0; $a < $cant_array2; $a++){
                       for($b=0; $b <$Numero_transiciones_2; $b++){
@@ -127,8 +127,9 @@
                   $leng_afnd=explode(",",$pal2);
                   $textolargo='<br>
                   Q-------------> σ ------>δ(Q,σ) <br>
-                  <br>Si no existe la trancision, escriba un x o X<br>';
-                  echo '<br><br>Transiciones del 2° Autómata'.$textolargo;
+                  Si no existe la trancision, seleccione X <br>';
+                  echo "<hr>";
+                  echo '<br><br><h4>Transiciones del 2° Autómata</h4>'.$textolargo;
                   $cont2=0;
                   for($a=0; $a < $cant_array2; $a++){
                       for($b=0; $b <count($leng_afnd); $b++){
@@ -148,14 +149,13 @@
                 if($tipo_auto =="2afnd")
                 {
                   $textolargo='<br>
-                  Q-------------> σ ------>δ(Q,σ) <br>
-                  <br>Si no existe la trancision, escriba un x o X<br>';
+                  Q-------------> σ ------>δ(Q,σ) <br>Si no existe la trancision, seleccione X<br>';
 
                   $leng_afnd=explode(",",$pal);
                   $Num_trans=$_POST['n_trans_afnd'];
                   echo '<input class="casillainput" type="hidden" name="n_transxd" value="'.$Num_trans.'">';
-                  
-                  echo "Transiciones del 1° Autómata ".$textolargo;
+                  echo"<hr>";
+                  echo "<h4>Transiciones del 1° Autómata</h4> ".$textolargo;
                   $cont=0;
                   for($a=0; $a < $cant_array; $a++){
                       for($b=0; $b <count($leng_afnd); $b++){
@@ -173,8 +173,8 @@
                   $Num_trans2=$_POST['n_trans_afnd2'];
                   echo '<input class="casillainput" type="hidden" name="n_transxd2" value="'.$Num_trans2.'">';
                   
-                  echo '<br><br>';
-                  echo 'Transiciones del 2° Autómata'.$textolargo;
+                  echo "<hr><br>";
+                  echo '<h4>Transiciones del 2° Autómata</h4>'.$textolargo;
                   $cont2=0;
                   for($a=0; $a < $cant_array2; $a++){
                       for($b=0; $b <count($leng_afnd2); $b++){

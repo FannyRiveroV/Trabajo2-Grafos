@@ -8,8 +8,8 @@
         <!-- Page Content -->
     <div class="container">
       <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8"> <br> <br>
+        <div class="col-4"></div>
+        <div class="col-7"> <br> <br>
           <h3  class="display-4  text-center">Autómatas</h3> <hr>
           <div class="container mx-auto">
             <div class="form-group px-5 shadow p-3 mb-5 contenido rounded">
@@ -136,7 +136,7 @@
                   }
 
 
-                    echo "PRIMERA QUINTUPLA <br><br>";
+                    echo "<h4>PRIMERA QUINTUPLA</h4><br>";
                   // imprime el automata 1
                   echo "K1 = {";
                       for($a=0;$a<count($K1);$a++){
@@ -196,7 +196,7 @@
                     }
                     echo "}<br><br>";
 
-                    echo "SEGUNDA QUINTUPLA <br><br>";
+                    echo "<hr><h4>SEGUNDA QUINTUPLA</h4> <br>";
                   // imprime el automata 2
                   echo "K2 = {";
                     for($a=0;$a<count($K2);$a++){
@@ -274,7 +274,7 @@
                   
                     $cont2++;
                   }
-                  echo "PRIMERA QUINTUPLA: AFD <br><br>";
+                  echo "<h4>PRIMERA QUINTUPLA: AFD </h4><br>";
                   // imprime el automata 1
                   echo "K1 = {";
                     for($a=0;$a<count($K1);$a++){
@@ -337,7 +337,7 @@
 
 
                   $Num_trans=$_POST['n_transxd'];
-                  echo'SEGUNDA QUINTUPLA: AFND<br>';
+                  echo'<hr><h4>SEGUNDA QUINTUPLA: AFND</h4><br>';
                   echo "K1 = {";
                   for($a=0;$a<count($K2);$a++){
                     if(count($K2)==1){
@@ -421,7 +421,7 @@
 
 
                   $Num_trans=$_POST['n_transxd'];
-                  echo'PRIMERA QUINTUPLA: AFND<br>';
+                  echo'<h4>PRIMERA QUINTUPLA: AFND</h4><br>';
                   echo "K1 = {";
                     for($a=0;$a<count($K1);$a++){
                         echo $K1[$a].",";
@@ -460,7 +460,7 @@
                   echo'}<br><br>';
 
                   $Num_trans2=$_POST['n_transxd2'];
-                  echo'SEGUNDA QUINTUPLA: AFND<br>';
+                  echo'<hr><h4>SEGUNDA QUINTUPLA: AFND</h4><br>';
                   echo "K2 = {";
                     for($a=0;$a<count($K2);$a++){
                         echo $K2[$a].",";

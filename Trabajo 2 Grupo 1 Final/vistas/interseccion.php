@@ -8,8 +8,8 @@
     <!-- Page Content -->
     <div class="container">
       <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8"> <br> <br>
+        <div class="col-4"></div>
+        <div class="col-7"> <br> <br>
           <h3  class="display-4  text-center">Autómatas</h3> <hr>
           <div class="container mx-auto">
             <div class="form-group px-5 shadow p-3 mb-5 contenido rounded"> 
@@ -24,7 +24,7 @@
 
                         function verAuto()
                         {
-                            echo 'QUINTUPLA  <br>';
+                            echo '<h4>QUINTUPLA </h4> <br>';
                             echo "K = {";
                                 for($a=0;$a<count($this->estados);$a++){
                                     echo $this->estados[$a].",";
@@ -67,7 +67,7 @@
         
                       function verAuto(){
         
-                        echo '<br>QUINTUPLA Transformada <br>';
+                        echo '<br><h4>QUINTUPLA TRANSFORMADA</h4> <br>';
                         echo "K = {";
                         for($a=0;$a<count($this->estados);$a++)
                         {
@@ -167,14 +167,14 @@
 
                     complemento($A);
                     complemento($B);
-                    echo 'complementos: <br><br>';
+                    echo '<hr><h4>COMPLEMENTOS</h4><br>';
                     $A->verAuto();
                     $B->verAuto();
 
 
                     $D = union($A,$B,$D);
 
-                    echo 'union autos: <br><br>';
+                    echo '<hr><h4>UNION AUTOMATAS<><br>';
 
                     $D->verAuto();
 
@@ -261,11 +261,11 @@
                     }
                     
 
-                    echo 'Quintupla simplificada: <br><br>';
+                    echo '<hr><h4>QUINTUPLA SIMPLIFICADA </h4><br>';
                     $C->verAuto();
 
                     complemento($C);
-                    echo '<br><br>Intersección de los autómatas: <br><br>';
+                    echo '<hr><h4>INTERSECCION DE LOS AUTOMATAS</h4><br>';
                     $C->verAuto();
 
 

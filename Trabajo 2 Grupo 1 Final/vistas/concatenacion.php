@@ -8,13 +8,13 @@
     <!-- Page Content -->
     <div class="container">
       <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8"> <br> <br>
+        <div class="col-4"></div>
+        <div class="col-7"> <br> <br>
           <h3  class="display-4  text-center">Autómatas</h3> <hr>
           <div class="container mx-auto">
             <div class="form-group px-5 shadow p-3 mb-5 contenido rounded">            
             <?php
-$tipo_auto=$_POST['tipo_auto'];
+            $tipo_auto=$_POST['tipo_auto'];
             class AFD
             {
                 public $estados = array();
@@ -24,7 +24,7 @@ $tipo_auto=$_POST['tipo_auto'];
                 public $trans=array();
 
                 function verAuto(){
-                    echo "QUINTUPLA : <br><br>";
+                    echo "<h4>QUINTUPLA  </h4><br>";
                     
                      echo "K = {";
                         for($a=0;$a<count($this->estados);$a++){

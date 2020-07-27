@@ -8,15 +8,14 @@
     <!-- Page Content -->
     <div class="container">
       <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8"> <br> <br>
+        <div class="col-4"></div>
+        <div class="col-7"> <br> <br>
           <h3  class="display-4  text-center">Autómatas</h3> <hr>
           <div class="container mx-auto">
             <div class="form-group px-5 shadow p-3 mb-5 contenido rounded">            
             <?php
 
             $tipo_auto = $_POST['tipo_auto'];
-            echo 'tipo auto :'.$tipo_auto.'<br>';
             $ep= 'epsilon';
             class AFD
             {
@@ -28,7 +27,7 @@
               public $trans=array();
 
               function verAuto(){
-                echo 'QUINTUPLA  <br>';
+                echo '<h4>QUINTUPLA </h4><hr>';
                 echo "K = {";
                 for($a=0;$a<count($this->estados);$a++){
                     echo $this->estados[$a].",";
@@ -69,7 +68,7 @@
 
               function verAuto(){
 
-                echo '<br>QUINTUPLA Transformada <br>';
+                echo '<hr><h4><br>QUINTUPLA TRANSFORMADA</h4> <br>';
                 echo "K = {";
                 for($a=0;$a<count($this->estados);$a++)
                 {
@@ -188,9 +187,7 @@
                     }
                     $matriztrans[$a][$b]= $palabra;
                     echo $matriztrans[$a][$b];
-                    echo'_'.'_'.'_'.'_';
                   }
-                  echo '<br>';
               }
 
 

@@ -4,10 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="author" content="Diego Velázquez">
   <meta name="description" content="Tablero con Bootstrap 4 - Webook">
 
-  <title>Grafos T1</title>
+  <title>Grafos T2</title>
 
   <!-- Bootstrap Css -->
   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -32,7 +31,7 @@
       <div class="logo bgdegree">
         <h2 class="font-weight-bold mb-0  " style="text-align: center;">Autómatas</h2>
       </div> 
-      <div class="menu list-group-flush"> 
+      <div class="menu list-group-flush" style="text-align: left"> 
         <a href="index.php?pagina=automatas" class="list-group-item list-group-item-action text-muted  p-3 border-0">
           <em class="material-icons">add_circle</em>  Ingresar Autómatas </a>
         <a href="index.php?pagina=nosotros" class="list-group-item list-group-item-action text-muted  p-3 border-0">

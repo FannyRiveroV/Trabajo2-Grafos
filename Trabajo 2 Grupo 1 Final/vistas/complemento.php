@@ -8,8 +8,8 @@
     <!-- Page Content -->
     <div class="container">
       <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8"> <br> <br>
+        <div class="col-4"></div>
+        <div class="col-7"> <br> <br>
           <h3  class="display-4  text-center">Autómatas</h3> <hr>
           <div class="container mx-auto">
             <div class="form-group px-5 shadow p-3 mb-5 contenido rounded">            
@@ -26,7 +26,7 @@
               
               function verAuto()
               {
-                echo "QUINTUPLA <br><br>";
+                echo "<h4>QUINTUPLA </h4>> <br>";
                 // imprime el automata 
                   echo "K = {";
                       for($a=0;$a<count($this->estados);$a++){
@@ -109,7 +109,7 @@
               }
               complemento($A);
               complemento($B);
-              echo "COMPLEMENTOS: <br><br>";
+              echo "<h3>COMPLEMENTOS:</h3><hr>";
               $A->verAuto();
               $B->verAuto();
 

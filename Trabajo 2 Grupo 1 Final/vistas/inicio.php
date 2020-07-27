@@ -3,7 +3,7 @@
     <!-- Page Content -->
       <div class="containerer inicio">
       <div class="row">
-        <div class="col-2"></div>
+        <div class="col-4"></div>
         <div class="col-8"> <br> <br>
           <h3  class="display-4  text-center negro">Trabajo 2 Autómatas</h3> <hr>
           <div class="mx-auto">
